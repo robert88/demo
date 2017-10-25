@@ -1,0 +1,11 @@
+{
+  "name": "robertNode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "robert",
+  "license": "ISC"
+}

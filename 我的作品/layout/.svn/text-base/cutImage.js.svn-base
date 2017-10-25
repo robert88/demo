@@ -1,0 +1,63 @@
+﻿		/**  
+			author:robert  
+			date:2014-01-16  
+			description:	fill picture
+	**/
+	function getImageData(panel,src,x,y,w,h,idx){
+			if(!panel){throw "画图 canvas对象不存在！";}
+			var drawPanel=panel.getContext("2d");
+				$("#newImg"+idx).hide();
+				var $next = $("#newImg"+idx).next();
+				$next.css("position","absolute")
+					.css("left",(w+panel.offsetLeft)+"px")
+					.css("top",(h/2+panel.offsetTop)+"px")
+					.hide();
+				$("#newImg"+idx).data("x",x).data("y",y).data("w",w).data("h",h);
+				if(document.domain!=="127.0.0.1"){
+					alert("请在服务器上测试！");
+					return;
+				}
+						if(window.console){
+							console.log("cutx"+$next.css("left"))
+						}
+				$("#newImg"+idx).bind("load",function(e){
+					var $target=$(this);
+					$target.next().show();
+					var cutx=$target.data("x");
+					var cuty=$target.data("y");
+					var cutw=$target.data("w");
+					var cuth=$target.data("h");
+						if(window.console){
+							console.log("cutx"+cutx+"cuty"+cuty+"cutw"+cutw+"cuth"+cuth)
+						}
+					drawPanel.drawImage(e.target,cutx,cuty,cutw,cuth,0,0,cutw,cuth);
+
+				})
+
+	}
+	function saveLocalImage(idx){
+		var t=$("#cvs"+idx)[0].toDataURL("image/png").replace("image/png","image/octet-stream");
+		window.location.href=t
+	}
+
+$(document).ready(function(){
+	var cutImagesName=[];
+	var x,y,w,h;
+	var len=g_cutImages.length
+	var src;
+	console.log("%c,%s","color:red",len)
+	for(var i=0;i<len;i++){
+		x = g_cutImages[i].x;
+		y = g_cutImages[i].y;
+		w = g_cutImages[i].width;
+		h = g_cutImages[i].height;
+		$("body").append("<div><canvas id='cvs"+i+"' width="+w+" height="+h+"></canvas></div>");
+		var c=$("#cvs"+i)[0];
+
+		src=g_cutImageUrl+g_cutImages[i].name;
+		$("body").append("<img id='newImg"+i+"' src='"+src+"'><div onclick='saveLocalImage("+i+")' style='background:blue;color:white'>"+g_cutImages[i].name+"</div>");
+		if(src){
+			getImageData(c,src,x,y,w,h,i);
+		}
+	}
+});

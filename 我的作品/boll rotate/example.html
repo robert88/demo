@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width;initial-scale=1.0" />
+<meta content="IE=10.000" http-equiv="X-UA-Compatible">
+<title>draw line demo</title>
+<!–[if IE]>
+<script src="js/html5.js"></script>
+<![endif]–>
+<style type="text/css">
+*{padding:0;list-style:none;margin:0 auto;}
+#cvs{background:url(images/bg.jpg);	border:solid 1px #999;z-index:0;}
+#header{width:960px;height:162px;}
+#content{width:960px;height:360px;}
+#footer{width:960px;height:70px;}
+#footer div{float:left;}
+.btn{width:81px;height:38px;margin-left:20px;color:#00F;background:url(images/rightangle.png);}
+.btn:hover{background:url(images/rightangleover.png);cursor:pointer;}
+.btn,.bn1,.bn2{font-weight:bolder;font-size:16px;line-height:40px;text-align:center;}
+.bn1,.bn2{width:60px;height:41px;color:#FFF;font-family:"黑体";}
+.bn1{background:url(images/reset.png);margin-left:560px;}
+.bn2{background:url(images/submit.png);margin-left:20px;}
+.bn1:hover,.bn2:hover{color:#CC3;cursor:pointer;}
+#ag3{position:absolute;z-index:1;}
+#ag0:hover,#ag1:hover,#ag2:hover,#ag3:hover{visibility:visible;}
+</style>
+<script src="js/index.js"></script>
+<!--
+<script src="/apps/meic/api/meic.js"></script>
+<script src="/apps/meic/engine/js/meic_engine.js"></script>
+
+-->
+</head>
+<body>
+<div id="header">
+    <div style="color:#090; font-weight:900;text-align:right">單元四 第八課 直角 <img src="images/book.gif"></div>
+    <div><img src="images/title.gif"></div>
+    <div  style="color:#000; font-size:30px;font-weight:900;margin-left:20px;line-height:50px;">在方格紙上畫出兩個直角。</div>
+</div>
+<div id="content"><div>
+	<canvas id="cvs" width="920" height="320">您的浏览器不支持画布功能，请升级至IE8以上版本</canvas>
+	</div>
+	</div>
+<div id="footer">
+    <div id="btn0" class="btn" onClick="setStatus(this,1);">直線</div>
+    <div id="btn1" class="btn" onClick="setStatus(this,2);">直角</div>
+    <div class="bn1" onClick="resetDraw();">重設</div>
+    <div class="bn2" onClick="submitDraw(0,0);">提交</div>
+</div>
+<div id="ag0" style="left:160px;top:160px;width:20px;height:20px;"></div>
+<div id="ag1" style="left:460px;top:160px;width:20px;height:20px;"></div>
+<div id="ag2" style="left:460px;top:260px;width:20px;height:20px;"></div>
+<div id="ag3" style="left:260px;top:260px;width:12px;height:12px;" onmouseover="ag3over();" onmouseout="ag3out();"></div>
+<label for="textId">旋转速度</label><input  id="textId" type="text" value="1" onchange=setSpeed();>
+</body>
+</html>

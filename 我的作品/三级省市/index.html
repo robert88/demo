@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Timepicker Demo</title>
+
+    <link type="text/css" href="css/index.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $(".ui_timepicker").datetimepicker({
+            //showOn: "button",
+            //buttonImage: "./css/images/icon_calendar.gif",
+            //buttonImageOnly: true,
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        })
+    })
+    </script>
+</head>
+<body>
+<div class="bg">
+<div class="btn"></div>
+<div class="btnhover"></div>
+<div id="showInfo">
+<p class="title_tip">个人基本资料</p>
+<p class="title">个人基本资料</p>
+<div class="text_out">对外显示名字</div>
+<p>
+    <span class="must">*</span>
+    <input type="text" value="真实姓名">
+    <input type="checkbox" id="tureName"><label class="checkbox" for="tureName"></label>
+</p>
+<p>
+    <span class="nomust"> &nbsp;</span>
+    <input type="text" value="别名">
+    <input type="checkbox" id="alax"><label class="checkbox" for="alax" style="padding-right:70px;"></label>
+    <input type="radio" name="sex" id="man" value="man"><label class="radio" for="man" ></label>男
+    <input type="radio" name="sex" id="fimale" value="fimale"><label class="radio" for="fimale"></label>女
+</p>
+<p>
+    <span class="must">*</span>
+    <input type="text" value="手机号码" id="tel">
+</p>
+<p class="buttonAlign">
+    <span class="must">*</span>
+    <input type="text" value="省/自治区/直辖市" id="sheng">
+	<button id="shengBtn"></button>
+	<input type="text" value="市/区（现所在地）" id="shi" style="margin-left:10px;">
+	<button id="shiBtn"></button>
+</p>
+<p  class="buttonAlign">
+    <span class="must">*</span>
+    <input type="text" value="开始工作年份" id="workYear">
+	<button id="workYearBtn"></button>
+	<input type="text" value="出生年份" id="birthYear" style="margin-left:10px;">
+	<button id="birthYearBtn"></button>
+</p>
+<div></div>
+<div class="bottom"></div>
+</div>
+</div>
+<p><input type="text" name="datetime" class="ui_timepicker" value=""></p>
+</body>
+</html>

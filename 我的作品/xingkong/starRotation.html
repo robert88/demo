@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Playing with Canvas</title>
+		<style type="text/css">
+			body{
+				background-color: #000;
+				text-align: center;
+				font-family: Helvetica, Verdana, Arial, Sans-serif;
+				font-size: .75em;
+				border:solid 1px red;
+			}
+			#msg{
+				padding: .5em;
+				-moz-border-radius: 1em;
+				width: 320px;
+				margin: auto;
+				background-color: #990;
+				-moz-opacity: .5;
+				color: #fff;
+				position: relative;
+				top: -100px;
+				text-align: center;
+				border:solid 1px green;
+			}
+			#msg a,
+			.notice{
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="starfield" width="640" height="480"></canvas>
+		<script type="text/javascript" src="scripts/ara.js"></script>
+		<script type="text/javascript" src="scripts/dom.js"></script>
+		<script type="text/javascript" src="scripts/canvas.js"></script>
+		<script type="text/javascript">
+			var starfield = new ARA.canvas.Starfield("starfield", {starCount:50,animSpeed:10});
+				starfield.wave.ampl = 10;
+				starfield.start();
+			
+			function setShape(val){
+				switch(val){
+					case "star":
+						starfield.starShape = val;
+						starfield.zoomLimit = 2;
+						starfield.zoomFactor = .035;
+					break;
+					
+					case "circle":
+						starfield.starShape = val;
+						starfield.zoomLimit = 4;
+						starfield.zoomFactor = .1;
+					break;
+					
+					case "square":
+						starfield.starShape = val;
+						starfield.zoomLimit = 5;
+						starfield.zoomFactor = .1;
+					break;
+				}
+			}
+			
+			function startStop(btn){
+				if(starfield.started){
+					starfield.stop();
+					btn.value = "Start";
+				}else{
+					starfield.start();
+					btn.value = "Stop";
+				}
+			}
+			
+			function toggleWave(btn, axis){
+				switch(axis){
+					case "x":
+						starfield.waveX = (starfield.waveX) ? false : true;
+						btn.value = (starfield.waveX) ? "Wave X (on)" : "Wave X (off)";
+					break;
+					
+					case "y":
+						starfield.waveY = (starfield.waveY) ? false : true;
+						btn.value = (starfield.waveY) ? "Wave Y (on)" : "Wave Y (off)";
+					break;
+				}
+			}
+			
+			function toggleMsg(btn){
+				var msg = document.getElementById("msg");
+				msg.style.display = (msg.style.display != "none") ? "none" : "block";
+				switch(msg.style.display){
+					case "none":
+						this.value = "Show message";
+					break;
+					
+					default:
+						this.value = "Hide message";
+					break;
+				}
+			}
+		</script>
+		<div>
+			<select onchange="setShape(this.value)">
+				<option value="star">Stars</option>
+				<option value="circle">Circles</option>
+				<option value="square">Squares</option>
+			</select>
+			
+			<input id="startStop" type="button" value="Stop" onclick="startStop(this)" />
+			
+			<input type="button" value="Wave X (off)" onclick="toggleWave(this, 'x')" />
+			<input type="button" value="Wave Y (off)" onclick="toggleWave(this, 'y')" />
+			
+			<input type="button" value="Hide message" onclick="toggleMsg(this)" />
+		</div>
+		<p id="msg">Playing with Canvas, by <a href="http://arapehlivanian.com">Ara Pehlivanian</a>.<br />Look ma, no Flash!</p>
+		<p class="notice">This demo requires Safari or Firefox 1.5+ to work</p>
+	</body>
+</html>

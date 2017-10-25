@@ -1,0 +1,25 @@
+﻿	var g_cutImageUrl="../src/421/";
+	var g_cutImages=[
+		{
+			name : 'PAGE_0092.jpg',
+			x:13,
+			y:566,
+			width:962,
+			height:557
+		}
+	]
+	var get3Size = true;
+	if(get3Size){
+		g_cutImages[1] = {};
+		g_cutImages[1].name = /(.*).jpg$/.exec(g_cutImages[0].name)[1]+"_150.jpg";
+		g_cutImages[1].x = Math.floor(g_cutImages[0].x*1.5);
+		g_cutImages[1].y = Math.floor(g_cutImages[0].y*1.5);
+		g_cutImages[1].width = Math.floor(g_cutImages[0].width*1.5);
+		g_cutImages[1].height = Math.floor(g_cutImages[0].height*1.5);	
+		g_cutImages[2] = {};		
+		g_cutImages[2].name = /(.*).jpg$/.exec(g_cutImages[0].name)[1]+"_200.jpg";
+		g_cutImages[2].x = Math.floor(g_cutImages[0].x*2);
+		g_cutImages[2].y = Math.floor(g_cutImages[0].y*2);
+		g_cutImages[2].width = Math.floor(g_cutImages[0].width*2);
+		g_cutImages[2].height = Math.floor(g_cutImages[0].height*2);
+	}

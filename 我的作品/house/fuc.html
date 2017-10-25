@@ -1,0 +1,163 @@
+﻿<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>page</title>
+<link href="commonCss/common.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="commonJs/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="commonJs/jquery-ui-1.10.3.custom.min.js"></script>
+<style>
+	.page{position:absolute;left:50%;margin-left:-510px;width: 1020px; height: 925px;overflow: hidden;}
+	.ui>div{position:absolute;line-height:60px;}
+	.bg{background-image:url(images/bg_page.jpg);background-repeat:no-repeat;}
+	.title_tree{background-position: -1px -2px;background-image:url(images/liu.png);background-repeat:no-repeat;}
+	.ui>.ui_title{font-size:100px;color:#fff;border-bottom:1px dashed #fff}
+	.ui h1{border-bottom:1px dashed #fff}
+	.border-bottom-dashed{border-bottom:1px dashed #008080}
+	.currentSpeeding{font-size:16px;font-weight:800;}
+	.blod{font-weight:800;}
+	.payrule{font-size:16px;font-weight:500;}
+	.ui_left p{line-height:25px;}
+	.radius{ -moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius:15px;}
+	.ui .item{text-align:center;background:#f7e6ee;height:30px;line-height:30px;}
+	.ui .additem{text-align:center;background:#eee;height:30px;line-height:30px;}
+	.ui .additem:hover{cursor:pointer;}
+	.ui .item .subItem{width:25%;display:inline-block;}
+	.ui .item .deleteItem{width:29px;display:inline-block;}
+	.ui .item .deleteItem:hover{cursor:pointer; }
+/*.silver,.gray,.white,.maroon,.red,.purple,.fuchsia,.lime,.olive,.green,.yellow,.blue,.navy,.teal,.aqua*/
+	</style>
+</head><body>
+	<div class="page" style="">
+		<div class="bg_1024 size_1024 bg" style="width: 1020px;height:925px;background-position: -1px -3px;">
+		  <div class="ui">
+		  <!--title-->
+				<div class=" ui_title left2 top1" style="width:407px;height:107px;">每日一计</div>
+				<div class="title_tree alpha-80 left5" style="width: 605px; height: 229px; "></div>			
+		  <!--left nav-->
+				<div class=" ui_left left0 top3 offleft1 offtop2 teal" style="width:260px;height:700px;">
+					<h1 class="padleft1" style="width:200px;height:auto;">今日开支</h1>
+					<p class="offtop1 padleft1">
+						<span>总支出:</span>
+						<span  class="currentSpeeding navy" >0</span>
+					</p>
+					<p class="offtop1 padleft1">
+						<span>今日预算:</span>
+						<span  class="currentSpeeding navy" >0</span>
+					</p>
+					<p class="offtop1 padleft1">
+						<span>今日差额:</span>
+						<span  class="currentSpeeding navy" >0</span>
+					</p>
+					
+					<h1 class="padleft1 offtop2" style="width:200px;height:auto;">预算规则</h1>
+					<p class="offtop1 padleft1"  style="padding-right:20px;">
+						<span>每日计划:</span>
+						<span  class="payrule navy"><br>
+							20元（星期一~~星期五）:晚餐开销菜钱<br>
+							60元（星期六--星期日）:全天开销菜钱<br>
+							5元：平均盐米油
+						</span>
+					</p>
+					<p class="offtop1 padleft1"  style="padding-right:20px;">
+						<span>每周计划:</span>
+						<span  class="payrule navy"><br>
+						30元：水果、<br>
+						20元：明早餐（5天）<br>
+						45元：明午餐（3天）<br>
+						20元：明交通费（5天）<br>						
+						25元：银早餐（5天）<br>
+						45元：银午餐（3天）<br>
+						30元：银交通费（5天）<br>
+						20元：益力多<br>
+						</span>
+					</p>
+					<h3 id="time" class="offtop2" ></h3>
+					<script language="javascript">
+					function time(){//获取当前时间的显示字符串
+					var date=new Date();
+					var week=['日','一','二','三','四','五','六'];
+					var str;
+					//格式：2010年12月23日12点34分23秒 星期四
+					str=(date.getFullYear())+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+' 星期'+week[date.getDay()];
+					//格式: 2010-12-23 12:34:23 周四
+					//str=(date.getYear()+1900)+'-'+date.getMonth()+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'  周'+week[date.getDay()];
+					return str;
+					}
+					function perSecond(){//显示时间
+					//每次打开网页显示时间
+					writeTime();
+					//每1000毫秒更新时间,如果不需要则注释下面一行；如果希望更改时间的刷新速度，请更改下面的数字，单位是毫秒
+					setInterval(writeTime,1000);
+					}
+					function writeTime(){//把时间显示在id为time的div中
+					document.getElementById('time').innerHTML=time();
+					}
+					perSecond();
+					</script>
+				</div>
+		  <!--right content-->
+				<div class="leftBody teal" style="left:287px;top:245px;width: 733px; height: 665px;">
+					<p class="title offleft1 text-shadow border-bottom-dashed teal">
+					支出详情:
+					</p>
+					<p class="item blod teal radius">
+					<span class="subItem ">消费项目</span><span  class="subItem">消费者</span><span  class="subItem">消费金额</span>
+					</p>
+					<p class="additem blod gray radius" onclick="additem(this)">
+					+
+					</p>
+					<p class="title offleft1 text-shadow border-bottom-dashed teal">
+					总体支出详情:
+					</p>
+					<p>吃饭：</p>
+					<p>其他开支：</p>
+					<p class="title offleft1++ border-bottom-dashed teal">
+					本月房租：水电：本月累计消费：
+					</p>
+					<p class="title offleft1 text-shadow  teal">
+					历史记录:
+					</p>
+					<p class="title offleft1++ border-bottom-dashed teal">
+					本月记录：年度记录
+					</p>
+					<datalist id="item-list">
+					<option>早餐</option>
+					<option>午餐</option>
+					<option>晚餐</option>
+					<option>益力多</option>
+					<option>车费</option>
+					<option>电话费</option>
+					<option>菜钱</option>
+					<option>油</option>
+					<option>米</option>
+					<option>纸巾</option>
+					</datalist>
+					<datalist id="item-user">
+					<option>尹明</option>
+					<option>肖银华</option>
+					<option>两个人</option>
+					</datalist>
+				</div>
+		  </div>
+			<div class="btn_ctl play hide"></div>
+		</div>
+	</div>
+	<script>
+	$(document).disableSelection();
+	function deleteSelf(obj){
+		$(obj).parent().remove();
+	}
+	additem.call($(".ui .additem"));
+	function additem(obj){
+		var str=[];
+		str.push("<p class='item blod maroon radius'>","<span class='deleteItem' onclick='deleteSelf(this)'>-</span>");
+		str.push("<span class='subItem '><input list='item-list'></span>","<span  class='subItem'><input list='item-user'></span>");
+		str.push("<span  class='subItem'><input type='text' ></span>","</p>");
+		if(this!==window){
+			obj=this;
+		}
+		$(obj).before(str.join(""));
+	}
+
+	</script>
+</body></html>

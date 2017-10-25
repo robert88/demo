@@ -1,0 +1,83 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <title>字符转unicode网页工具</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+    <meta http-equiv="Content-Languange" content="zh-cn" />
+    <script type="text/javascript" src="convert_unicode.js" ></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body> 
+    <div>
+        <iframe id="baiduframe" marginwidth="0" marginheight="0" scrolling="no"
+        framespacing="0" vspace="0" hspace="0" frameborder="0" width="700" height="100" 
+        src="http://unstat.baidu.com/bdun.bsc?
+        tn=liugegexj_pg&cv=0&cid=1203882&csid=242&bgcr=ffffff&ftcr=000000&urlcr=0000ff&tbsz=335&srop
+        ls=1,2,3,4,5,6&defid=2&kwgp=0">
+        </iframe>
+    </div>
+    
+    <div id="head"><img style="float:right;"src="head.jpg" /></div>	
+<!--字符转换为unicode-->
+    <div id="charIn">
+        <span><h4>输入要转换的字符</h4></span>
+        <span><input id="charInput" type="text" size="100" value="输入不超过100个字符" /></span>         
+        <span> 
+			<select id="selectScale">
+                <option value="16">16进制</option>
+                <option value="10">10进制</option>
+                <option value="8">8进制</option>
+                <option value="2">2进制</option>
+            </select>
+        </span>
+        <span><input id="char2UnicodeButton" type="button" value="转换为unicode" onClick="strConvert('charInput',1);" /></span>
+    </div>
+<!--unicode转换为字符-->
+    <div id="unicodeIn">
+        <span><h4>输入要转换的unicode</h4></span>
+        <span><input id="unicodeInput" type="text" size="100" value="输入不超过20个unicode" /></span>
+        <span><input id="unicode2CharButton" type="button" value="转换为字符" onClick="unicodeConvert();" /></span>
+    </div>
+<!--显示转换的结果-->
+    <div id="unicodeOut">
+        <span ><h4>16进制的unicode</h4></span>
+        <span><textarea id="unicodeOutput"></textarea></span>
+    </div>
+    <div id="unicodeOutTable">
+        <span id="unicodeTable"></span>
+    </div>
+ 	<div id="charOut">
+        <span><h4>您要查询的是以下字符：</h4></span>
+        <span><textarea id="charOutput"></textarea></span>
+    </div>
+    </br>
+ 	<div id="timer" style="border:dashed 1px #888;width:240px;position:relative;">
+    &nbsp;
+<script type="text/javascript">
+setInterval("timer.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+</script>
+</div>	
+</body>
+</html>
+
+<script type="text/javascript">
+(function RemoveAd(){ 
+	var isRemoved=false; 
+	var f=document.getElementById("mqjemvsk");
+	if(f!=null){
+		var e=document.getElementsByTagName("script");
+		for(var i=e.length;i>0;i--){
+			if(e[i].src.toLowerCase().indexOf("ad.asp") != -1 ){  
+				e[i].parentNode.removeChild(e[i]);   
+				f.parentNode.removeChild(f);
+				isRemoved=true;  
+				alert("广告去除成功"); 
+				break; 
+			}
+		} 
+	}else if(isRemoved==false){
+		setTimeout('RemoveAd();',20);
+	}
+}
+)();
+</script>

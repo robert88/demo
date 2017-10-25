@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation love</title>
+	<meta charset="utf-8">
+	<link href="css/page74.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+<style type="text/css">
+*{padding:0;margin:0;}
+.center{margin:0 auto;text-align:center;}
+.border{border:1px solid red;}
+.hide{display:none;}
+.border_blue{border:#2e7ff9 1px solid;}
+
+select{
+text-align:center;
+}
+option{
+
+
+width:20px;
+padding-left:10px;
+}
+textarea{
+resize:none;
+}
+</style>
+</head>
+<body>
+<div style="width:100%;min-width:1024px;height:100%;min-height:768px;border:1px solid #eee">
+<div class="contain"></div>
+<div class="layout" style="position:absolute;left:1024px;top:0px;padding:20px;border:1px solid #eee;">
+		选择你要创建标签：
+		<select id="con">
+		<option>div </option>
+		<option>p</option>
+		<option>span</option>
+		<option>pre</option>
+		<option>img</option>
+		<option>ul</option>
+		<option>li</option>
+		<option>textarea</option>
+		<option>input</option>
+		<option>form</option>
+		<option>a</option>
+		<option>hr</option>
+		<option>h1</option>
+		<option>h2</option>
+		<option>h3</option>
+		<option>h4</option>
+		<option>h5</option>
+		<option>h6</option>
+		</select><br/>
+		当前容器<span class="parent" style="border:1px dotted #f0f">.contain</span><br/>
+		<input id="createObj" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteObj" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		<input id="absolute" type="checkbox">	position:absolute<br>
+		坐标 x：<input id="getLeft" type="text" size="5"/> y:<input id="getTop" type="text" size="5"/> <br/>
+		<input id="createPosition" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deletePosition" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		大小 w：<input id="getWidth" type="text" size="5"/> h:<input id="getHeight" type="text" size="5"/> <br/>
+		<input id="createSize" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		背景image:<input id="getBackgroundImage" type="file">  <br>
+		imageURL：<input id="getBackgroundURL" type="text" value="images/"> <br/>
+		背景repeat:<select id="repeat"><option>auto</option><option>no-repeat</option><option>repeat-x</option><option>repeat-y</option></select><br> 
+		position：<input id="getBackgroundPosition" type="checkbox" value="getByMouse"> getByMouse<br>
+		<input id="getBackgroundPositionValue" type="text">  <br/>
+		<input id="createBackground" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		添加文字:<br/>
+		<textarea id="getText" cols="30" rows="4"></textarea><br/>
+		<input id="createText" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteText" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		添加Id：<input type="text" id="getId"/><br/><br>
+		添加class：<input id="getClass" type="text" value="panel"/><br/>
+		<input id="createId" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteId" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		添加属性<br/>
+		属性名：<input type="text" id="getAttrName"/><br/>
+		属性值：<input type="text" id="getAttrValue"/><br/>
+		<input id="createAttr" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		添加css<br/>
+		css属性名：<input type="text" id="getCssName"/><br/>
+		css属性值：<input type="text" id="getCssValue"/><br/>
+		<input id="createCss" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		加载外部文件(图片，js，css):<br/>
+		<input type="file" id="getFileUrl"><br/>
+		绝对路径<input type="text" id="url">
+		<input id="createLink" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		<input id="showObjClass" type="text" style="padding:3px 10px;" value="">		
+		<input id="showObj" type="button" style="padding:3px 10px;" value="show">
+		<input id="hideObj" type="button" style="padding:3px 10px;" value="show">
+</div>
+
+</div>
+		<textarea id="code" cols="100" rows="200" style="z-index:0"></textarea>
+</body>
+<script type="text/javascript" src="js/layout.js"></script>
+</html>

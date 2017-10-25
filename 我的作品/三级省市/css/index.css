@@ -1,0 +1,143 @@
+*{ 
+	margin: 0px; 
+	padding: 0px;
+}
+.hide{
+	display:none;
+}
+.bg{
+	background:url(../images/bg.png) no-repeat;
+	width:1000px; 
+	height:800px;
+	overflow:hidden;
+}
+.bg .btn{
+	background-image:url(../images/btn.png);
+	background-repeat:no-repeat;
+	margin:400px auto;
+	width:248px;
+	height:67px;
+}
+.bg .btn:hover{
+	background-position:0 -67px;
+	cursor:pointer;
+}
+#showInfo{
+	position:absolute;
+	border:1px solid #555756;
+	width:410px;
+	height:440px;
+	font-family:"微软雅黑";
+	letter-spacing:2px;
+}
+#showInfo p{
+	line-height:40px;
+	height:60px;
+}
+#showInfo span {
+	color:red;
+	display:inline-block;
+	width:20px;
+	height:40px;
+}
+#showInfo p>span:first-child{
+	text-align:center;
+}
+#showInfo button {
+	display: inline-block;
+	background-color:#fff;
+	height:42px;
+	width:30px;
+	border:1px solid #ccc;
+	background-image:url(../images/select.png);
+	background-repeat:no-repeat;
+	background-position:10px 20px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+#showInfo .title_tip{
+	background:#6e84b5;
+	color:#fff;
+	font-size:20px;
+	padding-left:30px;
+	line-height:40px;
+	height:40px;
+}
+#showInfo .title{
+	font-size:20px;
+	color:#6e84b5;
+	padding-left:40px;
+	line-height:40px;
+	height:40px;
+}
+#showInfo .text_out{
+	position: absolute;
+	left: 225px;
+	top: 115px;
+}
+#showInfo .checkbox{
+	background-image:url(../images/csscheckbox_929ce2b61cb1e144.png);
+	background-repeat:no-repeat;
+	display:inline-block;
+	width:13px;
+	height:13px;
+}
+#showInfo .buttonAlign *{
+	float:left;
+}
+#showInfo .radio{
+	background-image:url(../images/csscheckbox_3223.png);
+	background-repeat:no-repeat;
+	display:inline-block;
+	width:19px;
+	height:17px;
+}
+#showInfo input[type="text"]{
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 40px;
+	width:170px;
+	padding-left:2px;
+	font-size: 18px;
+	line-height: 20px;
+	color: #c0c0c0;
+}
+#showInfo input[type="checkbox"],#showInfo input[type="radio"]{
+	border: 1px solid #3c4d5f;
+	clip: rect(0 0 0 0);
+	width:0px;
+	height:0px;
+}
+input#tel[type="text"]{
+	width:367px;
+}
+#showInfo .bottom{
+
+}
+#showInfo .buttonAlign input{
+	width:150px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-moz-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+#showInfo .buttonAlign button:hover{
+cursor:pointer;
+}
+select:focus,input[type="file"]:focus,input[type="radio"]:focus,input[type="checkbox"]:focus{
+	outline:thin dotted #333;
+	outline:5px auto -webkit-focus-ring-color;
+	outline-offset:-2px;
+}

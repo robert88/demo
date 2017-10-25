@@ -1,0 +1,21 @@
+　　　<html xmlns="http://www.w3.org/1999/xhtml"> 
+　　　<head> 
+　　　<meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+　　　<title>onunload测试</title> 
+　　　<script> 
+		window.onbeforeunload=function (e){ 
+		console.log(window.alert)
+		//alert("===onbeforeunload==="); 
+		e =e||window.event;
+		if(e.clientX>document.body.clientWidth && e.clientY < 0 || e.altKey){ 
+			alert("你关闭了浏览器"); 
+		}else{ 
+			alert("你正在刷新页面"); 
+		} 
+		return false;
+		}
+　　　</script> 
+　　　</head> 
+　　　<body > 
+　　　</body> 
+　　　</html> 

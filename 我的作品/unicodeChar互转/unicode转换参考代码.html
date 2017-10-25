@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gb2312" />
+<title>字符的unicode码信息查询</title>
+<style type="text/css">
+  body{font-size:13px;background:#ccc;}
+  #codeShow{display:none;}
+  #codeShow textarea{width:450px;height:80px;}
+  #codeShow ul{overflow:hidden;zoom:1;}
+  #codeShow li{float:left;width:220px;text-align:center;list-style:none;}
+</style>
+<script type="text/javascript">
+function $id(o)
+{
+  return document.getElementById(o) || o;
+}
+function escapeCode(){
+    var hexArray = [],
+		decArray = [],
+		entiArray = [];
+    var decCode,
+		inTXT = $id('inputValue').value,
+		outTXT='',
+		entityCode='',
+		outList="<ul><li>Unicode Character Code编码</li><li>HTML Character Entities编号</li><li>字符显示</li><li>unicode信息查询</li></ul>";
+		//if($id('convAll').checked){  //true,转换a-z,A-Z等字符的unicode编码
+		  var character;
+		  for(i=0; i<inTXT.length; i++){
+			character = inTXT.charCodeAt(i).toString(16).toUpperCase();   //法1：使用charCodeAt逐字转码
+			outTXT += character+' ';
+			hexArray.push(character);
+		   }
+//		}
+//		else{
+//			outTXT = escape(inTXT);               //法2：使用escape直接转码（不转a-z,A-Z等字符）
+//			hexArray = outTXT.split(/%u|%/);  //以%u和%做分割插入数组
+//		}
+		for(i in hexArray){
+			if(hexArray[i]=='') hexArray.splice(i,1); //清除空的数组项（FF）
+			hexArray[i] = hexArray[i].slice(0,4);     //截取数组项中前四个字符。（消除a-z,A-Z等不解码产生的影响）
+			decCode = parseInt(hexArray[i],16).toString(10);
+			decArray.push(decCode);
+			entityCode += '&#'+decCode+'; ';
+			outList+="<ul><li>"+hexArray[i]+"</li><li>"+decArray[i]+"</li><li>\"&#"+decCode+";\"</li>";
+			outList+="<li><form enctype='application/x-www-form-urlencoded' action='http://www.unicode.org/cgi-bin/Code2Chart.pl' method='post' target='_blank'>";
+			outList+="<input type='hidden'  maxlength='8' size='8' name='HexCode' value="+hexArray[i]+" />";
+			outList+="<input type='submit' value='Go' name='submit'/></form></li></ul>";
+		}
+		$id('outUnicode').value = outTXT;   //输出unicode码，以%u或%开头。
+		$id('outEnticode').value = entityCode;  //输出字符实体编码
+		$id('outView').innerHTML = outList;  //输出编码值，并有unicode信息查询链接。
+		$id('codeShow').style.display='block';
+	 }
+</script>
+</head>
+<body>
+<h2>字符转unicode码</h2>
+（<a href="http://www.cssass.com/blog/index.php/convert_characters_to_unicode" target="_blank">Read  in my Blog</a>）
+<div>
+	<input type="text" id="inputValue" value="输入字符:如&#1161;" style="width:180px;height:25px;padding:2px;"/><label>
+	<!-- <input id="convAll" type="checkbox" />a-z,A-Z,0-9,@,/,.,+,-,_等字符也加入转码.</label> -->
+	<br />
+	<input type="button" value="转为unicode码" onclick="escapeCode();"/>
+	<p>
+</div>
+<div id="codeShow">
+	16进制Unicode：<br />
+	<textarea id="outUnicode"></textarea><br />
+	10进制Enticode：<br />
+	<textarea id="outEnticode"></textarea>
+	<div id="outView"></div>
+</div>
+</body>
+</html>

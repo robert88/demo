@@ -1,0 +1,75 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>利用before.after制作时尚焦点图相框 - 觉唯</title>
+<style>
+body, ul, li, p {margin:0; padding:0; font-family:Verdana, Geneva, sans-serif;}
+ul li {list-style:none;}
+img {border:0 none}
+body {background:url(bg.jpg) repeat;}
+.title {background-color:rgba(0,0,0,0.56); text-align:center; width:100%; position:fixed; top:0; left:0; padding:5px 0;}
+.title a {color:#FFF; text-decoration:none; font-size:16px; font-weight:bolder; line-height:24px;}
+.main {background-color:#FFF; width:100%; height:auto; overflow:hidden; border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; position:fixed; top:50%; margin-top:-128px;}
+.content {width:788px; margin:auto; height:auto; overflow:hidden; padding:30px; }
+.content ul li {float:left; height:176px; border-right:1px solid #DDDDDD; position:relative; padding:10px;}
+.focus {background:rgba(250,250,250,0.25); width:174px; height:174px; border:1px dashed #666; position:absolute; left:10px; top:10px; display:none;}
+.focus:before {width:174px; height:134px; border-left:1px solid #fff; border-right:1px solid #fff; content:''; position:absolute; left:-1px; top:20px;}
+.focus:after {width:134px; height:174px; border-top:1px solid red; border-bottom:1px solid #fff; content:''; position:absolute; top:-1px; left:20px;}
+.content ul li:hover .focus {display:block;}
+#noborder {border-right:0 none;}
+.author {display:block; text-decoration:none; color:#333; font-size:14px; font-weight:bolder; position:absolute; right:20px; bottom:15px; font-style:italic;}
+
+#ads_box {position:absolute; right:20px; top:54px; width:274px; z-index:100000;}
+#ads_box .ads {background:#707070; border-color: #FFFFFF; border-radius:4px; box-shadow: 0 0 10px #505050; overflow: hidden; padding: 10px;}
+.adsborder {height: 250; width: 250px; border:2px solid #8a8a8a;}
+#ads_aplink {color:#FFF; font-size:12px; line-height:24px; height:24px; position:relative; margin-bottom:5px;}
+#ads_close {background: url(http://www.jiawin.com/demos/close.png) no-repeat scroll 0 0 transparent; border: medium none !important; height: 20px; overflow: hidden; position: absolute; text-decoration: none !important; top:0px; right:0; width: 20px;}
+#ads_close:hover {background: url(http://www.jiawin.com/demos/close.png) no-repeat scroll 0 -20px transparent;}
+</style>
+<script src="http://www.jiawin.com/wp-content/themes/javin/js/jquery.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($){							
+		$('#ads_close').click(function(e){
+			$('#ads_box').fadeOut();
+			e.preventDefault();
+		});
+	});
+</script>
+</head>
+
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="http://pos.baidu.com/wh/o.htm?cf=u" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+<div id="ads_box">
+  <div class="ads">
+    <div id="ads_aplink">Advertising links<a title="关闭广告" href="" id="ads_close"></a></div>
+    <div class="adsborder">
+    <script type="text/javascript">
+/*250x250*/
+var cpro_id = "u1314765";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script><div id="BAIDU_DUP_wrapper_u1314765_0"><iframe width="250" height="250" src="http://pos.baidu.com/ecom?cec=UTF-8&amp;dai=1&amp;cfv=12&amp;cpa=1&amp;col=zh-CN&amp;dis=0&amp;xuanting=0&amp;n=73096049_cpr&amp;conOP=0&amp;scale=&amp;skin=&amp;rsi0=250&amp;rsi1=250&amp;rsi5=4&amp;ltr=http%3A%2F%2Fwww.qianduan.net%2Fcss-pseudo-elements-before-after-magical-make-fashion-focus-map-photo-frame.html&amp;ltu=http%3A%2F%2Fwww.jiawin.com%2Fdemos%2F423%2Findex.html&amp;pcs=1074x980&amp;rss0=%23FFFFFF&amp;rss1=%23FFFFFF&amp;rss2=%230000FF&amp;rss3=%23444444&amp;rss4=%23008000&amp;rss5=&amp;rss6=%23e10900&amp;rss7=&amp;rad=&amp;pis=10000x10000&amp;aurl=&amp;psr=1920x1080&amp;pss=1074x0&amp;tpr=1398851813747&amp;lunum=6&amp;ch=0&amp;at=6&amp;qn=3453bd714e617d57&amp;ps=95x792&amp;tn=text_default_250_250&amp;ts=1&amp;c01=0&amp;td_id=1314765&amp;adn=3&amp;cad=1&amp;ccd=24&amp;dtm=BAIDU_DUP2_SETJSONADSLOT&amp;dc=2&amp;di=u1314765" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div><script charset="utf-8" src="http://pos.baidu.com/ecom?di=u1314765&amp;dcb=BAIDU_DUP2_define&amp;dtm=BAIDU_DUP2_SETJSONADSLOT&amp;dbv=2&amp;dci=0&amp;dri=0&amp;dis=0&amp;dai=1&amp;dds=&amp;drs=1&amp;dvi=1395393341&amp;ltu=http%3A%2F%2Fwww.jiawin.com%2Fdemos%2F423%2Findex.html&amp;liu=&amp;ltr=http%3A%2F%2Fwww.qianduan.net%2Fcss-pseudo-elements-before-after-magical-make-fashion-focus-map-photo-frame.html&amp;lcr=http%3A%2F%2Fwww.qianduan.net%2Fcss-pseudo-elements-before-after-magical-make-fashion-focus-map-photo-frame.html&amp;ps=95x792&amp;psr=1920x1080&amp;par=1920x1050&amp;pcs=1074x980&amp;pss=1074x0&amp;pis=-1x-1&amp;cfv=12&amp;ccd=24&amp;chi=1&amp;cja=true&amp;cpl=31&amp;cmi=136&amp;cce=true&amp;col=zh-CN&amp;cec=UTF-8&amp;cdo=-1&amp;tsr=9&amp;tlm=1398623683&amp;tcn=1398851814&amp;tpr=1398851813747&amp;dpt=none&amp;coa=c01%3D0&amp;baidu_id="></script>
+    </div>
+  </div>
+</div>
+<div class="title"><a href="http://www.jiawin.com/css-before-after/">利用before.after制作时尚焦点图相框（返回文章）</a></div>
+<div class="main">
+<div class="content">
+<ul>
+  <li><a href="http://www.jiawin.com" target="_blank"><img src="jiawin_1.jpg">
+  <p class="focus"></p></a></li>
+  <li><a href="http://www.jiawin.com" target="_blank"><img src="jiawin_2.jpg">
+  <p class="focus"></p></a></li>
+  <li><a href="http://www.jiawin.com" target="_blank"><img src="jiawin_3.jpg">
+  <p class="focus"></p></a></li>
+  <li id="noborder"><a href="http://www.jiawin.com" target="_blank"><img src="jiawin_4.jpg">
+  <p class="focus"></p></a></li>
+</ul>
+</div>
+<div><a class="author" title="Welcome to www.jiawin.com" href="http://www.jiawin.com" target="_blank">Design by:jiawin.com</a></div>
+</div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3e31620eb0a4e69c61c07f5f76cc46c8' type='text/javascript'%3E%3C/script%3E"));
+</script><script src=" http://hm.baidu.com/h.js?3e31620eb0a4e69c61c07f5f76cc46c8" type="text/javascript"></script>
+
+
+
+</body></html>

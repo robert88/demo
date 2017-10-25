@@ -1,0 +1,82 @@
+<html><head>
+<title>系统设置</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Languange" content="zh-cn">
+	<meta name="author" content="yinming">
+	<meta name="keyword" content="深圳市宸电电子有限公司，高清dv方案">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+<link rel="stylesheet" type="text/css" href="default.css">
+		<noscript>
+			&lt;span style="color:red"&gt;1、请单击上方&lt;/span&gt;&lt;br/&gt;
+			&lt;hr&gt;
+			&lt;img src="error.jpg"&gt;&lt;br /&gt;&lt;br/&gt;
+			&lt;span style="color:red"&gt;2、允许设置&lt;/span&gt;&lt;br /&gt;
+			&lt;hr&gt;
+			&lt;img src="error2.jpg"&gt;
+		</noscript>
+<script type="text/javascript" src="default.js"></script>
+</head>
+
+<body onload="showSet()">
+	<br \="">
+	<hr style="border:2px #ccc dotted">
+	<form>
+	<div id="videoResDefault" style="display: block;">
+		<br>
+		body:<select id="videoRes">
+			<option value="0">div</option>
+			<option value="1">p</option>
+			<option value="2">hr</option>
+			<option value="3">pre</option>
+		</select>
+	</div>
+	<br>
+		<div id="photoSizeDefault" style="display: block;">
+		图像大小设置:<select id="photoSize">
+			<option value="3">300万</option>
+			<option value="2" selected="true">500万（默认）</option>
+			<option value="1">800万</option>
+			<option value="0">1200万</option>
+<!--	<option value=4></option>
+			<option value=5></option>
+			<option value=6></option>
+			-->
+		</select>
+	</div>
+	<br>
+<div id="aeDefault" style="display: block;">
+		录像曝光度设置:<select id="ae">
+			<option value="0">-2.0</option>
+			<option value="1">-1.7</option>
+			<option value="2">-1.3</option>
+			<option value="3">-1.0</option>
+			<option value="4">-0.7</option>
+			<option value="5">-0.3</option>
+			<option value="6" selected="true">0.0(默认)</option>
+			<option value="7">0.3</option>	
+			<option value="8">0.7</option>				
+			<option value="9">1.0</option>
+			<option value="10">1.7</option>	
+			<option value="11">1.3</option>
+			<option value="12">2.0</option>
+		</select>
+	</div>
+<br>
+	<div id="timeDefault" style="display: block;">
+			系统时间设置：<input id="systemTime" type="text" value="请单击左边按钮" onclick="userGetTime(2);">
+			<input id="submit" type="submit" value="生成系统配置文件" onclick="config();">
+				<br \="">
+				<hr>
+				<div id="result">请检查TF卡中是否生成sys/default.txt配置文件.<br>
+					如果没有请到e盘中查找是否有sys/default.txt.且将sys目录拷贝到TF卡中
+				</div>
+			<hr style="border:2px #ccc dotted">
+			<p><br \=""><br \="">
+			</p><div>单击“生成系统配置文件”之后，诺出现下图请单击‘是’。
+				<br\><br \="">
+				<img src="alert.jpg" style="border:1px #eee solid">
+			</br\></div><p></p>
+	</div>
+	</form>
+<input /> 
+</body></html>

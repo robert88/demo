@@ -1,0 +1,253 @@
+1.	<html>  
+2.	    <head>  
+3.	        <title>  
+4.	            再回首，那只小球已停止转动——HTML5实现3D球效果  
+5.	        </title>  
+6.	        <meta charset="utf-8">  
+7.	        <style type="text/css">    
+8.	            #box{     
+9.	                border:2px solid #f60; margin:0 auto;    
+10.	            }    
+11.	        </style>    
+12.	        <script>  
+13.	            var spaceX = 30; //X方向的密度  
+14.	            var spaceY = 30; //Y方向的密度  
+15.	            var PI = Math.PI; //数学角度π  
+16.	            var radius = 200; //球的半径  
+17.	            var radian = PI / 180; //弧度  
+18.	            var speedX = 0; //X方向的速度  
+19.	            var speedY = 0; //Y方向的速度  
+20.	            var offsetX = 300; //X方向的偏移量相当于将球的中心X坐标移之到画布中央  
+21.	            var offsetY = 300; //Y方向的偏移量相当于将球的中心Y坐标移之到画布中央  
+22.	            var spheres = new Array(); //存储像素点  
+23.	            var canvas; //画布  
+24.	            var context; //上下文  
+25.	            var focalLength = 300; //控制球距离屏幕的距离  
+26.	            var start = true; //是否启动  
+27.	            var sx = 0; //sinx  
+28.	            var cx = 0; //cosx  
+29.	            var sy = 0; //siny  
+30.	            var cy = 0; //cosy  
+31.	            var sz = 0; //sinz  
+32.	            var cz = 0; //cosz  
+33.	            var innerStaColor = "GREEN"; //表示内部颜色  
+34.	            var outerStaColor = "RED"; //外部颜色  
+35.	            var objectRadius = 10; //绘制原点半径  
+36.	            var scaleRatio = 0;  
+37.	              
+38.	            var cameraView = {  
+39.	                x: 0,  
+40.	                y: 0,  
+41.	                z: 0,  
+42.	                rotX: 0,  
+43.	                rotY: 0,  
+44.	                rotZ: 0  
+45.	            }; //视角角度  
+46.	            /**  
+47.	            author:qingfeilee  
+48.	            date:2012-03-28  
+49.	            description:初始化系统画布信息  
+50.	        **/  
+51.	            function initCanvas() {  
+52.	                try{   
+53.	                    canvas = document.getElementById("sphere");  
+54.	                    context = canvas.getContext("2d");  
+55.	                }catch(e){  
+56.	                     document.getElementById("tip_info").innerHTML = "您的浏览器不支持！";    
+57.	                }  
+58.	            }  
+59.	            /**  
+60.	            author:qingfeilee  
+61.	            date:2012-03-28  
+62.	            description:初始化小球实体  
+63.	        **/  
+64.	            function initSphere() {  
+65.	                for (var i = spaceY; i < 180; i += spaceY) {  
+66.	                    for (var angle = 0; angle < 360; angle += spaceX) {  
+67.	                        var object = {};  
+68.	                        var x = Math.sin(radian * i) * radius;  
+69.	  
+70.	                        object.x = Math.cos(angle * radian) * x;  
+71.	                        object.y = Math.cos(radian * i) * radius;  
+72.	                        object.z = Math.sin(angle * radian) * x;  
+73.	                        object.glow = .5; //亮度的范围  
+74.	                        spheres.push(object);  
+75.	                    }  
+76.	                }  
+77.	            }  
+78.	            /**  
+79.	            author:qingfeilee  
+80.	            date:2012-03-28  
+81.	            description:初始化系统函数  
+82.	        **/  
+83.	            function init() {  
+84.	                initCanvas();  
+85.	                initSphere();  
+86.	                setInterval(this.update, 1000 / 60, this);  
+87.	                setTimeout(function() {  
+88.	                    start = false;  
+89.	                },  
+90.	                1000);  
+91.	            }  
+92.	            /**  
+93.	            author:qingfeilee  
+94.	            date:2012-03-28  
+95.	            description:设置整个大球的运转速度  
+96.	        **/  
+97.	            function setSpeed(speedX, speedY) {  
+98.	                this.speedX = speedX;  
+99.	                this.speedY = speedY;  
+100.	            }  
+101.	            /**  
+102.	            author:qingfeilee  
+103.	            date:2012-03-28  
+104.	            description:更新整个球的状态以实现动态效果  
+105.	        **/  
+106.	            function update() {  
+107.	                if (start) {  
+108.	                    setParam();  
+109.	                }  
+110.	            }  
+111.	            /**  
+112.	            author:qingfeilee  
+113.	            date:2012-03-28  
+114.	            description:设置各个小球的属性  
+115.	        **/  
+116.	            function setParam() {  
+117.	                //根据速度大小计算出一次旋转的角度大小  
+118.	                var rotYstep = speedX / 10000;  
+119.	                var rotXstep = speedY / 10000;  
+120.	                cameraView.rotY = rotYstep;  
+121.	                cameraView.rotX = -rotXstep;  
+122.	                //计算出对应的cos和sin  
+123.	                sx = Math.sin(cameraView.rotX);  
+124.	                cx = Math.cos(cameraView.rotX);  
+125.	                sy = Math.sin(cameraView.rotY);  
+126.	                cy = Math.cos(cameraView.rotY);  
+127.	                sz = Math.sin(cameraView.rotZ);  
+128.	                cz = Math.cos(cameraView.rotZ);  
+129.	  
+130.	                // 设置画布的效果  
+131.	                context.fillStyle = 'rgba(0,0,0,0.1)';  
+132.	                context.fillRect(0, 0, canvas.width, canvas.height);  
+133.	  
+134.	                var l = spheres.length - 1;  
+135.	  
+136.	                for (var i = l,  
+137.	                obj; obj = spheres[i]; i--) {  
+138.	                    render(obj);  
+139.	                }  
+140.	            }  
+141.	            /**  
+142.	            author:qingfeilee  
+143.	            date:2012-03-28  
+144.	            description:渲染整个画布  
+145.	        **/  
+146.	            function render(object) {  
+147.	                var xy, xz, yx, yz, zx, zy;  
+148.	  
+149.	                // 计算出物体的相对于照相机的位置  
+150.	                var x = object.x - cameraView.x;  
+151.	                var y = object.y - cameraView.y;  
+152.	                var z = object.z - cameraView.z;  
+153.	                  
+154.	                // 绕X轴旋转  
+155.	                xy = cx * y - sx * z;  
+156.	                xz = sx * y + cx * z;  
+157.	                // 绕Y轴旋转  
+158.	                yz = cy * xz - sy * x;  
+159.	                yx = sy * xz + cy * x;  
+160.	                // 绕Z轴旋转  
+161.	                zx = cz * yx - sz * xy;  
+162.	                zy = sz * yx + cz * xy;  
+163.	                //给各个球重新定位  
+164.	                object.x = zx;  
+165.	                object.y = zy;  
+166.	                object.z = yz;  
+167.	  
+168.	                //根据z轴数据来缩放球  
+169.	                scaleRatio = focalLength / (focalLength + yz);  
+170.	                scale = scaleRatio;  
+171.	  
+172.	                if (object.glow > .5) {  
+173.	                    object.glow -= .02;  
+174.	                }  
+175.	  
+176.	                var sphereStyle = context.createRadialGradient(offsetX + object.x * scaleRatio, offsetY + object.y * scaleRatio,   
+177.	                scaleRatio * .5, offsetX + object.x * scaleRatio, offsetY + object.y * scaleRatio, scaleRatio * objectRadius * .5);  
+178.	                sphereStyle.addColorStop(0, innerStaColor);  
+179.	                sphereStyle.addColorStop(object.glow, outerStaColor);  
+180.	                sphereStyle.addColorStop(1, 'rgba(0,0,0,0)');  
+181.	  
+182.	                context.fillStyle = sphereStyle;  
+183.	                context.fillRect(offsetX + object.x * scaleRatio - scaleRatio * objectRadius * .5,   
+184.	                offsetY + object.y * scaleRatio - scaleRatio * objectRadius * .5, scaleRatio * objectRadius, scaleRatio * objectRadius);  
+185.	                 document.getElementById("tip_info").innerHTML = "当前速度："+speedX+"  "+ speedY+"   小球半径："+objectRadius;    
+186.	                  
+187.	            }  
+188.	            /**  
+189.	            author:qingfeilee  
+190.	            date:2012-03-28  
+191.	            description:冻结/激活真个大球状态  
+192.	        **/  
+193.	            function startOrPause() {  
+194.	                if (start) {  
+195.	                    setTimeout(function() {  
+196.	                        start = false;  
+197.	                    },  
+198.	                    2000);  
+199.	                    document.getElementById("swi").innerHTML = "激活";  
+200.	                    innerStaColor = "GREEN";  
+201.	                    outerStaColor = "RED";  
+202.	                } else {  
+203.	                    start = true;  
+204.	                    document.getElementById("swi").innerHTML = "2秒后冻结";  
+205.	                    innerStaColor = "RED";  
+206.	                    outerStaColor = "GREEN";  
+207.	                }  
+208.	            }  
+209.	            /**  
+210.	            author:qingfeilee  
+211.	            date:2012-03-28  
+212.	            description:改变球的大小  
+213.	        **/  
+214.	            function changeObjectRadius(val) {  
+215.	                this.objectRadius = val;  
+216.	            }  
+217.	            window.addEventListener("load", init, true);  
+218.	        </script>  
+219.	    </head>  
+220.	    <body>  
+221.	        <div id="box" style="width:600px; height:600px">    
+222.	            <canvas id="sphere" width="600" height="600" style="background:#0066FF">  
+223.	            </canvas>  
+224.	            <div align="center">  
+225.	                <button id="swi" onclick="startOrPause()">  
+226.	                    激活  
+227.	                </button>  
+228.	                <button onclick="setSpeed(-150,0)">  
+229.	                    向东  
+230.	                </button>  
+231.	                <button onclick="setSpeed(150,0)">  
+232.	                    向西  
+233.	                </button>  
+234.	                <button onclick="setSpeed(0,-150)">  
+235.	                    向南  
+236.	                </button>  
+237.	                <button onclick="setSpeed(0,150)">  
+238.	                    向北  
+239.	                </button>  
+240.	                小球大小：  
+241.	                <input type="range" min="10" max="30" value="10" step="2" onchange="changeObjectRadius(this.value)"/>  
+242.	            </div>  
+243.	            <div align="center">  
+244.	                <a href='http://blog.csdn.net/qingfeilee/'>  
+245.	                        阿飞blog  
+246.	                </a>  
+247.	                <a id="tip_info">  
+248.	                </a>  
+249.	            </div>  
+250.	              
+251.	        </div>  
+252.	    </body>  
+253.	</html>  

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>放飞梦想 </title>
+<meta name="author" content="yinming ,empery media,巨邦传媒" />
+<meta name="keyword" content="巨邦传媒,放飞梦想,军训" />
+<meta name="title" content="巨邦传媒,举行放飞梦想,特别军训" />
+<meta name="description" content="巨邦传媒,举行放飞梦想，特别军训" />
+<meta http-equiv="content-Type" content="type/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width;initial-scale=1.0" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+<style type="text/css">
+/*css3 @media(ie不支持) 响应式设计 responsive design*/
+/*大于*/
+@media(min-width:1024px){
+body{background:#aaa;}
+}
+/*小于*/
+@media(max-width:767px){
+body{background:#eee;}
+}
+/*之间*/
+@media(min-width:767px) and (max-width:1024px){
+body{background:#ddd;}
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+<!-- [if It IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="css/prettify.css" rel="stylesheet" type="text/css">
+</head>
+<body onload="prettyPrint();">
+
+<div class="container">
+    <h1 class="page-header">container<small>bootstrap布局-网格固定-居中分栏布局.</small></h1>
+    <p>
+    	bootstrap布局网格布局，container类是固定大小居中布局，row类中用spanN网格布局。N等于12除以栏数。
+    </p>
+    <div class="row">
+      <div class="span4">
+        <h3 class="page-header">代码示例<small>--block1</small></h2>
+        <pre>
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;span4&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;span4&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;span4&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+        </div>
+        <div class="span4">
+        <h3 class="page-header">代码解释<small>--block2</small></h2>
+        <p>
+        	边框是使用了pre标签。以后可以直接复制这段代码用。更改你所需要的栏数。就可以了。
+        </p>
+        </div>
+        <div class="span4">
+        <h3 class="page-header">嵌套布局<small>--block3</small></h2>
+        <p>
+        	嵌套布局要注意的是spanN类的选择。计算方法是基于父类。
+        </p>
+            <div class="row">
+                <div class="span2">嵌套布局1</div>
+                <div class="span2">嵌套布局2</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <h1 class="page-header">container-fluid<small>bootstrap布局--流动布局.</small></h1>
+    <p>
+    	    bootstrap布局网格布局，container-fluid类是流动居中布局，row-fluid类中用spanN网格布局。N等于12除
+    </p>
+    <div class="row-fluid">
+        <div class="span4">
+        <h3 class="page-header">代码示例<small>--block1</small></h2>
+        <p>
+        <pre>
+&lt;div class=&quot;container-fluid&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span4&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;span4&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;span4&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+        </p>
+        </div>
+        <div class="span4">
+        <h3 class="page-header">代码解释<small>--block2</small></h2>
+        <p>
+        	流动布局是以百分比的形式去计算宽度的。如果宽度小于一个英文单词宽度。单词会叠加。
+        </p>
+        </div>
+        <div class="span4">
+            <h3 class="page-header">嵌套布局<small>--block3</small></h2>
+            <p>
+            嵌套布局也是要注意，嵌套的span类也是以百分比去计算宽度。
+            </p>
+            <div class="row-fluid">
+                <div class="span6">这里用了span6表示50%</div>
+                <div class="span6">嵌套布局2</div>
+            </div>
+        </div>
+    </div>
+	<div class="container-fluid"><h1 class="page-header">响应式css设计<small>@media(iE不支持响应式设计)</small></h1>
+		<div class="row-fluid">
+			<div class="span6">
+				<h3 class="page-header">css3 @media</h3>
+				/*css3 @media(ie不支持) 响应式设计 responsive design*/<br>
+				/*大于*/<br>
+				@media(min-width:1024px){<br>
+				body{background:red;}<br>
+				}<br>
+				/*小于*/<br>
+				@media(max-width:767px){<br>
+				body{background:green;}<br>
+				}<br>
+				/*之间*/<br>
+				@media(min-width:767px) and (max-width:1024px){<br>
+				body{background:#ddd;}<br>
+				}<br>
+			</div>
+			<div class="span6">
+				<div class="row-fluid">
+					<div class="span4 hidden-phone">
+						<h4 class="page-header">hidden-phone</h4>
+						显示在手机上
+					</div>
+					<div class="span4 hidden-table">
+						<h4 class="page-header">hidden-table</h4>
+						显示在平板电脑上
+					</div>
+					<div class="span4 hidden-desktop">
+						<h4 class="page-header">hidden-desktop</h4>
+						显示在电脑上
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h1 class="page-header">缩写</h1>
+	<p><abbr class="initialism" title="cascading style sheet">css</abbr>initailism文字将大写显示，鼠标放上去会显示缩写全称。</p>
+	<blockquote class="pull-right"><p>pull-left右边浮动</p><small><site>来自www.2013yin.com</site></small></blockquote>
+	<p></p>
+		<h1 class="page-header">列表</h1>
+		<h2>无序列表</h2>
+		<ul><li>无序列表1</li><li>无序列表2</li><li>无序列表3</li></ul>
+		<h2>有序列表</h2>
+		<ol><li>有序列表1</li><li>有序列表2</li><li>有序列表3</li></ol>
+		<h2>描述列表</h2>
+		<dl class="dl-horizontal">
+		<dt>dl-horizontal</dt>
+		<dd>中心对其</dd>
+		<dt>dl-horizontal</dt>
+		<dd>中心对其</dd>
+		<dt>dl-horizontal</dt>
+		<dd>中心对其</dd>
+		</dl>
+	<p></p>
+	<p>google code prettify</p>
+	<p> 
+	<pre class="prettyprint linenums">&lt;p&gt;<br>
+	&lt;pre class=&quot;prettyprint linenums&quot;&gt;<br>
+	&lt;/pre&gt;<br>
+&lt;/p&gt;<br></pre></p>
+<h1>表格布局</h1>
+	<table class="table">
+    <thead><tr><th>d</td><th>d</td></tr></thead>
+    <tbody>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+	</tbody>
+    </table>
+    <h1>条纹表格</h1>
+   <table class="table table-striped">
+    <thead><tr><th>d</td><th>d</td></tr></thead>
+    <tbody>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+	</tbody>
+    </table>
+	<h1>边框表格</h1>
+   <table class="table table-bordered">
+    <thead><tr><th>d</td><th>d</td></tr></thead>
+    <tbody>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+	</tbody>
+    </table>
+	<h1>压缩内边距表格</h1>
+   <table class="table table-condensed">
+    <thead><tr><th>d</td><th>d</td></tr></thead>
+    <tbody>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+		<tr><td>3</td><td>d</td></tr>
+	</tbody>
+    </table>
+	<h1>表单</h1>
+	<label for="userId">label</label>
+	<input id="userId" type="text" placeholder="输入你的用户名" class="span3">
+	<p class="help-block">help-block 帮助文字</p>
+	<h1>文本框的前缀和后缀</h1>
+	<div class="input-perpend input-append">
+	<span class="add-on">&yen;</span><input type="text"><span class="add-on">.00</span>
+	<br>
+	<input type="text" ><button class="btn" type="button">搜索</button>
+	<br>
+	<p>单选框</p>
+	<label>选择性别</label>
+	<label class="radio"><input type="radio" name="gander" value="male" >man</label>
+	<label class="radio"><input type="radio" name="gander" value="female" >female</label>
+	<label class="radio"><input type="radio" name="gander" value="other" >other</label>
+	<p>复选框</p>
+		<label class="checkbox inline"><input type="checkbox" name="gander" value="male" >man inline</label>
+		<label class="checkbox inline"><input type="checkbox"  name="gander" value="male" >man</label>
+		<label class="checkbox inline"><input type="checkbox" name="gander" value="male" >man</label>
+	<p>选择列表</p>
+	<label for="somewhere">想去地方</label>
+		<select id="somewhere" multiple="multiple">
+		<option value="s">d</option>
+		<option value="s">c</option>
+		<option value="s">v</option>
+		</select>
+        
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>用户登录</legend>
+                <div class="control-group>
+                    <label for="username" class="control-label">用户名</label>
+                    <input id="username" type="text" >
+               </div>
+                <div class="control-group">
+                    <label for="ps" class="control-label">密码</label>
+                    <input id="ps" type="text" >
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">提交</button>
+                </div>
+      		</fieldset>
+        </form>
+		<p><h3>不同的按钮</h3></p>
+		<br><button class="btn" type="button" value="btn">btn</button>
+		<br><button class="btn btn-primary btn-large" type="button" value="primary">primary</button>
+		<br><button class="btn btn-info btn-small" type="button" value="info">info</button>
+		<br><button class="btn btn-success btn-mini" type="button" value="success">success</button>
+		<br><button class="btn btn-waining" type="button" value="warning">warning</button>
+		<br><button class="btn btn-danger" type="button" value="danger">danger</button>
+		<br><button class="btn btn-inverse" type="button" value="inverse">inverse</button>
+		<br><a class="btn btn-success" href="#"><i class="icon-comment"></i>success</a>
+		<br><a class="btn btn-success" href="#"><i class="icon-shopping-cart icon-white"></i>success</a>
+		<p><h3>提示信息</h3></p>
+		<div class="alert alert-block">
+		<a href="#" class="close" data-dismiss="alert">x</a>
+		<h4>alert alert-block</h4>
+		</div>
+		<h4>thumbnail</h4>
+		<ul class="thumbnails" >
+		<li class="span3"><a class="thumbnail" href="#"><img src="http://placehold.it/260x180" alt=""></a></li>
+		<li class="span3"><a class="thumbnail" href="#"><img src="http://placehold.it/260x180" alt=""></a></li>
+		<li class="span3"><a class="thumbnail" href="#"><img src="http://placehold.it/260x180" alt=""></a></li>
+		<li class="span3"><a class="thumbnail" href="#"><img src="http://placehold.it/260x180" alt=""></a></li>
+		<li class="span6"><a class="thumbnail" href="#"><img src="http://placehold.it/520x380" alt=""></a></li>
+		<li class="span6"><a class="thumbnail" href="#"><img src="http://placehold.it/520x180" alt=""></a></li>
+		<li class="span3"><a class="thumbnail" href="#"><img src="http://placehold.it/260x180" alt=""></a></li>
+		<li class="span3"><a class="thumbnail" href="#"><img src="http://placehold.it/260x180" alt=""></a></li>
+		</ul>
+		<h4>选项卡</h4>
+		<div class="tabbable">
+		<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">wordperss</a></li>
+		<li ><a  href="#tab2"  data-toggle="tab">drupal</a></li>
+		<li ><a  href="#tab3" data-toggle="tab">joomla</a></li>
+		</ul>
+		<div class="tab-content">
+		<div class="tab-pane active" id="tab1"><p>wordperss 优雅的cms</p></div>
+		<div class="tab-pane" id="tab2"><p>drupal 灵活强大的cms</p></div>
+		<div class="tab-pane" id="tab3"><p>joomla 简单易用的cms</p></div>
+		</div>
+		</div>
+</div>
+
+<script type="type/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script type="type/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/prettify.js"></script>
+</body>
+</html>

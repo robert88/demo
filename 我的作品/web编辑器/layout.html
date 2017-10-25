@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation love</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+<style type="text/css">
+*{padding:0;margin:0;}
+.center{margin:0 auto;text-align:center;}
+.border{border:1px solid red;}
+.hide{display:none;}
+.border_blue{border:#2e7ff9 1px solid;}
+
+select{
+text-align:center;
+}
+option{
+
+
+width:20px;
+padding-left:10px;
+}
+textarea{
+resize:none;
+}
+</style>
+</head>
+<body>
+<div style="width:100%;min-width:1024px;height:100%;min-height:3470px;border:1px solid #eee">
+<div class="contain"></div>
+<div class="layout" style="position:absolute;left:1024px;top:0px;padding:20px;border:1px solid #eee;">
+		选择你要创建标签：
+		<select id="con">
+		<option>div </option>
+		<option>p</option>
+		<option>span</option>
+		<option>pre</option>
+		<option>img</option>
+		<option>ul</option>
+		<option>li</option>
+		<option>textarea</option>
+		<option>input</option>
+		<option>form</option>
+		<option>a</option>
+		<option>hr</option>
+		<option>h1</option>
+		<option>h2</option>
+		<option>h3</option>
+		<option>h4</option>
+		<option>h5</option>
+		<option>h6</option>
+		</select><br/>
+		当前容器<span class="parent" style="border:1px dotted #f0f">.contain</span><br/>
+		<input id="createObj" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteObj" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		<input id="absolute" type="checkbox" checked>	position:absolute<br>
+		坐标 x：<input id="getLeft" type="text" value="0" size="5"/> y:<input id="getTop" value="0"  type="text" size="5"/> <br/>
+		<input id="createPosition" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deletePosition" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		默认大小 w：<input id="getWidth" type="text" size="5" value="200" /> h:<input id="getHeight" type="text" size="5" value="200"/> <br/>
+		当前大小 w：<input id="getcurWidth" type="text" size="5" value="200" /> h:<input id="getcurHeight" type="text" size="5" value="200"/> <br/>
+		<input id="createSize" type="button" style="padding:3px 10px;" value="添加默认">
+		<input id="createcurSize" type="button" style="padding:3px 10px;" value="添加当前"><br/><br/>
+		背景image:<input id="getBackgroundImage" type="file">  <br>
+		imageURL：<input id="getBackgroundURL" type="text" value="images/"> <br/>
+		背景repeat:<select id="repeat"><option>auto</option><option>no-repeat</option><option>repeat-x</option><option>repeat-y</option></select><br> 
+		position：<input id="getBackgroundPosition" type="checkbox" value="getByMouse"> getByMouse<br>
+		<input id="getBackgroundPositionValue" type="text">  <br/>
+		<input id="createBackground" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		添加文字:<br/>
+		<textarea id="getText" cols="30" rows="4"></textarea><br/>
+		<input id="createText" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteText" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		添加Id：<input type="text" id="getId"/><br/><br>
+		<input id="classpad" type="checkbox" checked>递增<br>添加class：<input id="getClass" type="text" value="panel"/><br/>
+		<input id="createId" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteId" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		添加css<br/>
+		css属性名：<input type="text" id="getCssName" value="background-color"/><br/>
+		css属性值：<input type="text" id="getCssValue" value="#fff"/><br/>
+		<input id="createCss" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		添加属性<br/>
+		属性名：<input type="text" id="getAttrName"/><br/>
+		属性值：<input type="text" id="getAttrValue"/><br/>
+		<input id="createAttr" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		加载外部文件(图片，js，css):<br/>
+		<input type="file" id="getFileUrl"><br/>
+		绝对路径<input type="text" id="url">
+		<input id="createLink" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		<input id="showObjClass" type="text" style="padding:3px 10px;" value="showObjClass">		
+		<input id="showObj" type="button" style="padding:3px 10px;" value="show">
+		<input id="hideObj" type="button" style="padding:3px 10px;" value="show">
+				<input id="deleteBorder" type="button" style="padding:3px 10px;" value="去边框"><br/><br/>
+</div>
+
+</div>
+<div style="width:1024px ;height:768px;border:1px solid #eee">
+		<textarea id="code" cols="100" rows="50" style="z-index:0;position:relative;"></textarea>
+		<input id="reset" type="button" style="padding:3px 10px;" value="重新编辑">
+		<input id="getlocal" type="button" style="padding:3px 10px;" value="获得local代码"><br/><br/>
+		<input id="getParseCode" type="button" style="padding:3px 10px;" value="解析代码"><br/><br/>
+		<input id="reg" type="text" value="解析关键字"><br/><br/>
+		<textarea id="parseCode" cols="100" rows="50" style="z-index:0;position:relative;"></textarea>
+</div>
+</body>
+<script type="text/javascript">
+var curObj =null;
+$(".layout").draggable();
+$("#code").draggable();
+$(document).click(function(e){
+e=e||window.event;
+var curId=e.target.id;
+var curClass=e.target.className;
+	switch(curId){
+		case "createObj":
+		var selectContain=$.trim($("#con").find("option:selected").text());
+		var containObj=document.createElement(selectContain)
+		if(curObj){
+			curObj.append(containObj)
+			curObj.removeClass("border")
+			curObj.addClass("border_blue")
+			
+		}else{
+			$(".contain").append(containObj);
+		}
+		curObj=$(containObj);
+		curObj.addClass("border drag");
+		$(".drag").draggable();
+		$(".layout .parent").html(curObj.attr("class"))
+		break;
+		case "deleteObj":
+			if(curObj){
+				if(confirm("are you sure delete this object？")){
+				curObj.remove();
+				curObj=null;
+				}
+			}
+		break;
+		case "createPosition":
+			if(($("#absolute").is(":checked")==true)&&curObj){
+				var curLeft=parseInt($("#getLeft").val(),10)||0;
+				var curTop=parseInt($("#getTop").val(),10)||0;
+				if(curObj.css("position")!=="absolute"){
+					curObj.css("position","absolute");
+				}
+					curObj.css("left",curLeft+"px");
+					curObj.css("top",curTop+"px");
+			}
+		break;
+		case "deletePosition":
+			if(curObj){
+				curObj.css("position","static");
+			}
+		break;
+		case "createSize":
+			if(curObj){
+				var curWidth=parseInt($("#getWidth").val(),10)||0;
+				var curHeight=parseInt($("#getHeight").val(),10)||0;
+				console.log(curWidth)
+				if(curWidth){
+					curObj.css("width",curWidth+"px");
+				}
+				if(curHeight){
+					curObj.css("height",curHeight+"px");
+				}
+			}
+		break;
+		case "createcurSize":
+			if(curObj){
+				var curWidth=parseInt($("#getcurWidth").val(),10)||0;
+				var curHeight=parseInt($("#getcurHeight").val(),10)||0;
+				console.log(curWidth)
+				if(curWidth){
+					curObj.css("width",curWidth+"px");
+				}
+				if(curHeight){
+					curObj.css("height",curHeight+"px");
+				}
+			}
+		break;
+		case "createText":
+			if(curObj){
+				var curText=$("#getText").val()||0;
+				console.log(curText)
+				if(curText){
+					curObj.append(curText);
+				}
+			}
+		break;
+		case "deleteText":
+			if(curObj){
+				curObj.empty();
+			}
+		break;
+		case "createId":
+			if(curObj){
+				var curId=$("#getId").val()||"";
+				var creatClass=$.trim($("#getClass").val());
+				if(curId){
+					curObj.attr("id",curId);
+				}
+				if(creatClass){
+					curObj.addClass(creatClass);
+					if($("#classpad").is(":checked")==true){
+						var num=/([^\d]+)(\d+$)/.exec(creatClass)
+						console.log("num"+num);
+						if(num&&num[1]&&num[2]){
+							num[2]++;
+							if(num[2]<10){
+								creatClass=num[1]+"0"+num[2];
+							}else{
+								creatClass=num[1]+num[2];
+							}
+						}
+					}
+					console.log(creatClass);
+					$("#getClass").val(creatClass);
+				}
+			}
+		break;
+		case "deleteId":
+			if(curObj){
+				var creatClass=$.trim($("#getClass").val());
+				if(creatClass){
+					curObj.removeClass(creatClass);
+				}
+			}
+		break;
+		case "createAttr":
+			if(curObj){
+				var attrName=$("#getAttr").val()||"";
+				var attrValue=$("#getAttrValue").val()||"";
+				if(attrValue&&attrName){
+					curObj.attr(attrName,attrValue);
+				}
+			}
+		break;
+		case "createCss":
+			if(curObj){
+				var cssName=$("#getCssName").val()||"";
+				var cssValue=$("#getCssValue").val()||"";
+				if(cssName&&cssValue){
+					curObj.css(cssName,cssValue);
+				}
+			}
+		break;
+		case "createLink":
+			if(curObj){
+				var curFile=$("#getFileUrl").val()||"";
+				curFile=curFile.slice(curFile.lastIndexOf("\\")+1)
+				var cururl=$("#url").val()||"";
+				if(curFile){
+					var isImg=/(\.png)|(\.jpg)|(\.gif)$/.test(curFile)
+					var isJs=/\.js$/.test(curFile)
+					var isCss=/\.css$/.test(curFile)
+					if(isImg){
+						var fileObj=new Image();
+						fileObj.src=curFile;
+						fileObj.style.width="20px";
+						fileObj.style.height="20px";
+					}
+					if(isJs){
+					var fileObj=document.createElement("script");
+						fileObj.src=curFile;
+					}
+					if(isCss){
+						var fileObj=document.createElement("link");
+						fileObj.href=curFile;
+					}
+						curObj.append(fileObj);
+				}
+			}
+		break;
+		case "createBackground":
+		if(curObj){
+			var imageName=$("#getBackgroundImage").val()||"";
+			var imageURL=$("#getBackgroundURL").val()||"";
+			var imageRepeat=$("#repeat").find("option:selected").text();
+			var imagePosition=$("#getBackgroundPositionValue").val();
+			imageName=imageName.slice(imageName.lastIndexOf("\\")+1);
+			var imageFullURL=imageURL+imageName;
+			console.log(imageFullURL+imagePosition+imageRepeat)
+			if(imageName){
+				curObj.css("background-image","url("+imageFullURL+")");
+				curObj.css("background-repeat",imageRepeat);
+				if(imagePosition){
+					curObj.css("background-position",imagePosition);
+				}
+			}
+			$("#getBackgroundPositionValue").val("");
+		}
+		break;
+		case "hideObj":
+		if(curObj){
+				var text=$("#showObjValue").val();
+				$("#showObjValue").val(text+""+curobj.attr("class"));
+				curObj.hide();
+		}
+
+		break;
+		case "reset":
+		var html=$("#code").val();
+		$(".contain").empty();
+		$(".contain").html(html);
+		console.log(html)
+		$(".drag").draggable();
+		break;
+		case "deleteBorder":
+			if(curObj){
+					if(/\bborder\b/g.test(curObj.attr("class"))){
+						curObj.removeClass("border")
+					}
+			}
+		break;
+		case "getParseCode":
+			var html=$("#code").val();
+			var reg=$("#reg").val();
+			var replaceReg=[];
+			console.log("old reg: "+reg)
+			if(reg){
+				if(/\)/g.test(reg)){
+					reg=reg.replace(/\)/g,"\\)")
+				}
+				if(/\(/g.test(reg)){
+					reg=reg.replace(/\(/g,"\\(")
+				}
+				if(/\./g.test(reg)){
+					reg=reg.replace(/\./g,"\\.")
+				}
+				reg=reg.replace(/\//g,"\\/")
+			}
+			console.log("reg :"+reg)
+				replaceReg.push(new RegExp(reg.toString(),"g"))
+				replaceReg.push(new RegExp("\\bui-draggable\\b","g"));
+				replaceReg.push(new RegExp("\\bdrag\\b","g"));
+				replaceReg.push(new RegExp("\\bborder\\b","g"));
+				replaceReg.push(new RegExp("\\bborder_blue\\b","g"));
+
+			if(html){
+				for(var i=0;i<replaceReg.length;i++){
+				console.log(replaceReg)
+					html=html.replace(replaceReg[i],"")
+					console.log(html);
+				}
+				$("#parseCode").val(html)
+			}
+		break;
+		case "getlocal":
+			$("#code").val("");
+			$("#code").val(window.localStorage.html);
+		break;
+	}
+	//var regtype = $("input:radio[name='regtype'][checked]").val();$("#absolute").is(":checked")==true
+		if(/ui-draggable/g.test(curClass)&&(/\bdrag\b/g.test(curClass))){
+
+			if(curObj){
+					if($("#getBackgroundPosition").is(":checked")==true){
+						var relativeX=e.pageX-curObj.offset().left;
+						var relativeY=e.pageY-curObj.offset().top;
+						if(relativeX>=0&&relativeY>=0){
+							var position="-"+relativeX+"px -"+relativeY+"px";
+							$("#getBackgroundPositionValue").val(position);
+							console.log("position"+position);
+							$("#getBackgroundPosition").attr("checked",false);
+						}
+					}else{
+						if(e.target===curObj[0]){
+							if(/border_blue/g.test(curClass)){
+								targetFocus(e)
+							}else{
+								targetBlur()
+							}
+						}else{
+							curObj.removeClass("border")
+							curObj.addClass("border_blue")
+							targetFocus(e)
+						}
+					} 
+			}else{
+				targetFocus(e)
+			}
+		}
+})
+function targetFocus(e){
+	e=e||window.event;
+	curObj=$(e.target)
+	curObj.addClass("border")
+	curObj.removeClass("border_blue")
+	$(".layout .parent").html(curObj.attr("class"))
+}
+function targetBlur(){
+	curObj.removeClass("border")
+	curObj.addClass("border_blue")
+	$(".layout .parent").html(".contain")
+	curObj=null;
+}
+$(document).bind("keydown",function(evt){
+evt = (evt) ? evt : window.event;
+
+switch(evt.keyCode){
+case 37:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"||curObj.css("position")=="relative"){
+			var left=curObj.offset().left;
+			curObj.css("left",(left-1)+"px");
+			var left2=curObj.offset().left
+			$("#getLeft").val(left-1)
+			//console.log("left--:"+(left-1))
+			//console.log("left2:"+(left2))
+		}
+	}else{
+		var width=curObj.width();
+		curObj.css("width",(width-1)+"px");
+		$("#getcurWidth").val(width-1)
+	}
+	return false;
+}
+break;
+case 39:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"||curObj.css("position")=="relative"){
+			var left=curObj.offset().left;
+			curObj.css("left",(left+1)+"px");
+			$("#getLeft").val(left+1)
+			console.log("left++:"+(left+1))
+		}
+	}else{
+		var width=curObj.width();
+		curObj.css("width",(width+1)+"px");
+		$("#getcurWidth").val(width+1)
+	}
+	return false;
+}
+break;
+case 38:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"||curObj.css("position")=="relative"){
+			var top1=(parseInt(curObj.offset().top,10)-1);
+			console.log("yin,,omng"+(top1+"px"))
+			curObj.css("top",top1.toString()+"px");
+			alert(curObj.css("top"))
+			$("#getTop").val(top-1);
+		}
+	}else{
+		var height=curObj.height();
+		curObj.css("height",(height-1)+"px");
+			$("#getcurHeight").val(height-1);
+	}
+	return false;
+}
+break;
+case 40:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"||curObj.css("position")=="relative"){
+			var top=curObj.offset().top;
+			curObj.css("top",(top+1)+"px");
+			$("#getTop").val(top+1);
+		}
+	}else{
+		var height=curObj.height();
+		curObj.css("height",(height+1)+"px");
+		$("#getcurHeight").val(height+1);
+	}
+	return false;
+}
+break;
+case 13:
+	if(evt.ctrlKey){
+		//$(".contain .ui-draggable").removeClass("ui-draggable");
+		console.log($($(".contain").html()))
+		$("#code").val($(".contain").html())
+		if(window.localStorage){
+			window.localStorage.html=$(".contain").html();
+		}
+		return false;
+	}
+break;
+}
+
+});
+     
+</script>
+</html>

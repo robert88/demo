@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>layout</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="scripts/jquery.contextmenu.r2.js"></script>
+</head>
+<style>
+.hide{display:none;}
+*{margin:0px;padding:0px;}
+.queding:hover{cursor:pointer;}
+.quxiao:hover{cursor:pointer;}
+</style>
+<body style="background:#58A0AF;" >
+</body>
+</html>
+<script src="cutData.js"></script>
+<script src="cutImage.js"></script>

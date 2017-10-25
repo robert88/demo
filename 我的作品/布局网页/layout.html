@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation love</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+	<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+<style type="text/css">
+*{padding:0;margin:0;}
+.center{margin:0 auto;text-align:center;}
+.border{border:1px solid red;}
+.hide{display:none;}
+.border_blue{border:#2e7ff9 1px solid;}
+
+select{
+text-align:center;
+}
+option{
+
+
+width:20px;
+padding-left:10px;
+}
+textarea{
+resize:none;
+}
+</style>
+</head>
+<body>
+<div style="width:100%;min-width:1024px;height:100%;min-height:768px;border:1px solid #eee">
+<div class="contain"></div>
+<div class="layout" style="position:absolute;left:1024px;top:0px;padding:20px;border:1px solid #eee;">
+		选择你要创建标签：
+		<select id="con">
+		<option>div </option>
+		<option>p</option>
+		<option>span</option>
+		<option>pre</option>
+		<option>img</option>
+		<option>ul</option>
+		<option>li</option>
+		<option>textarea</option>
+		<option>input</option>
+		<option>form</option>
+		<option>a</option>
+		<option>hr</option>
+		<option>h1</option>
+		<option>h2</option>
+		<option>h3</option>
+		<option>h4</option>
+		<option>h5</option>
+		<option>h6</option>
+		</select><br/>
+		当前容器<span class="parent" style="border:1px dotted #f0f">.contain</span><br/>
+		<input id="createObj" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteObj" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		<input id="absolute" type="checkbox">	position:absolute<br>
+		坐标 x：<input id="getLeft" type="text" size="5"/> y:<input id="getTop" type="text" size="5"/> <br/>
+		<input id="createPosition" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deletePosition" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		大小 w：<input id="getWidth" type="text" size="5"/> h:<input id="getHeight" type="text" size="5"/> <br/>
+		<input id="createSize" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		背景image:<input id="getBackgroundImage" type="file">  <br>
+		imageURL：<input id="getBackgroundURL" type="text" value="images/"> <br/>
+		背景repeat:<select id="repeat"><option>auto</option><option>no-repeat</option><option>repeat-x</option><option>repeat-y</option></select><br> 
+		position：<input id="getBackgroundPosition" type="checkbox" value="getByMouse"> getByMouse<br>
+		<input id="getBackgroundPositionValue" type="text">  <br/>
+		<input id="createBackground" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		添加文字:<br/>
+		<textarea id="getText" cols="30" rows="4"></textarea><br/>
+		<input id="createText" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteText" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		添加Id：<input type="text" id="getId"/><br/><br>
+		添加class：<input id="getClass" type="text" value="panel"/><br/>
+		<input id="createId" type="button" style="padding:3px 10px;" value="添加">
+		<input id="deleteId" type="button" style="padding:3px 10px;" value="删除"><br/><br/>
+		添加属性<br/>
+		属性名：<input type="text" id="getAttrName"/><br/>
+		属性值：<input type="text" id="getAttrValue"/><br/>
+		<input id="createAttr" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		添加css<br/>
+		css属性名：<input type="text" id="getCssName"/><br/>
+		css属性值：<input type="text" id="getCssValue"/><br/>
+		<input id="createCss" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		加载外部文件(图片，js，css):<br/>
+		<input type="file" id="getFileUrl"><br/>
+		绝对路径<input type="text" id="url">
+		<input id="createLink" type="button" style="padding:3px 10px;" value="添加"><br/><br/>
+		<input id="showObjClass" type="text" style="padding:3px 10px;" value="">		
+		<input id="showObj" type="button" style="padding:3px 10px;" value="show">
+		<input id="hideObj" type="button" style="padding:3px 10px;" value="show">
+</div>
+
+</div>
+		<textarea id="code" cols="100" rows="200" style="z-index:0"></textarea>
+</body>
+<script type="text/javascrip">
+var curObj =null;
+$(".layout").draggable();
+$("#code").draggable();
+$(document).click(function(e){
+e=e||window.event;
+var curId=e.target.id;
+var curClass=e.target.className;
+	switch(curId){
+		case "createObj":
+		var selectContain=$.trim($("#con").find("option:selected").text());
+		var containObj=document.createElement(selectContain)
+		if(curObj){
+			curObj.append(containObj)
+			curObj.removeClass("border drag")
+		}else{
+			$(".contain").append(containObj);
+		}
+		curObj=$(containObj);
+		curObj.addClass("border drag");
+		$(".drag").draggable();
+		$(".layout .parent").html(curObj.attr("class"))
+		break;
+		case "deleteObj":
+			if(curObj){
+				curObj.remove();
+				curObj=null;
+			}
+		break;
+		case "createPosition":
+			if(($("#absolute").is(":checked")==true)&&curObj){
+				var curLeft=parseInt($("#getLeft").val(),10)||0;
+				var curTop=parseInt($("#getTop").val(),10)||0;
+				if(curObj.css("position")!=="absolute"){
+					curObj.css("position","absolute");
+				}
+				if(curLeft){
+					curObj.css("left",curLeft+"px");
+				}
+				if(curTop){
+					curObj.css("top",curTop+"px");
+				}
+			}
+		break;
+		case "deletePosition":
+			if(curObj){
+				curObj.css("position","static");
+			}
+		break;
+		case "createSize":
+			if(curObj){
+				var curWidth=parseInt($("#getWidth").val(),10)||0;
+				var curHeight=parseInt($("#getHeight").val(),10)||0;
+				console.log(curWidth)
+				if(curWidth){
+					curObj.css("width",curWidth+"px");
+				}
+				if(curHeight){
+					curObj.css("height",curHeight+"px");
+				}
+			}
+		break;
+		case "createText":
+			if(curObj){
+				var curText=$("#getText").val()||0;
+				console.log(curText)
+				if(curText){
+					curObj.append(curText);
+				}
+			}
+		break;
+		case "deleteText":
+			if(curObj){
+				curObj.empty();
+			}
+		break;
+		case "createId":
+			if(curObj){
+				var curId=$("#getId").val()||"";
+				var curClass=$.trim($("#getClass").val());
+				if(curId){
+					curObj.attr("id",curId);
+				}
+				if(curClass){
+					curObj.addClass(curClass);
+				}
+			}
+		break;
+		case "deleteId":
+			if(curObj){
+				var curClass=$.trim($("#getClass").val());
+				if(curClass){
+					curObj.removeClass(curClass);
+				}
+			}
+		break;
+		case "createAttr":
+			if(curObj){
+				var attrName=$("#getAttr").val()||"";
+				var attrValue=$("#getAttrValue").val()||"";
+				if(attrValue&&attrName){
+					curObj.attr(attrName,attrValue);
+				}
+			}
+		break;
+		case "createCss":
+			if(curObj){
+				var cssName=$("#getCssName").val()||"";
+				var cssValue=$("#getCssValue").val()||"";
+				if(cssName&&cssValue){
+					curObj.css(cssName,cssValue);
+				}
+			}
+		break;
+		case "createLink":
+			if(curObj){
+				var curFile=$("#getFileUrl").val()||"";
+				curFile=curFile.slice(curFile.lastIndexOf("\\")+1)
+				var cururl=$("#url").val()||"";
+				if(curFile){
+					var isImg=/(\.png)|(\.jpg)|(\.gif)$/.test(curFile)
+					var isJs=/\.js$/.test(curFile)
+					var isCss=/\.css$/.test(curFile)
+					if(isImg){
+						var fileObj=new Image();
+						fileObj.src=curFile;
+						fileObj.style.width="20px";
+						fileObj.style.height="20px";
+					}
+					if(isJs){
+					var fileObj=document.createElement("script");
+						fileObj.src=curFile;
+					}
+					if(isCss){
+						var fileObj=document.createElement("link");
+						fileObj.href=curFile;
+					}
+						curObj.append(fileObj);
+				}
+			}
+		break;
+		case "createBackground":
+		if(curObj){
+			var imageName=$("#getBackgroundImage").val()||"";
+			var imageURL=$("#getBackgroundURL").val()||"";
+			var imageRepeat=$("#repeat").find("option:selected").text();
+			var imagePosition=$("#getBackgroundPositionValue").val();
+			imageName=imageName.slice(imageName.lastIndexOf("\\")+1);
+			var imageFullURL=imageURL+imageName;
+			console.log(imageFullURL+imagePosition+imageRepeat)
+			if(imageName){
+				curObj.css("background-image","url("+imageFullURL+")");
+				curObj.css("background-repeat",imageRepeat);
+				if(imagePosition){
+					curObj.css("background-position",imagePosition);
+				}
+			}
+		}
+		break;
+		case "hideObj":
+		if(curObj){
+				var text=$("#showObjValue").val();
+				$("#showObjValue").val(text+""+curobj.attr("class"));
+				curObj.hide();
+		}
+
+		break;
+	}
+	//var regtype = $("input:radio[name='regtype'][checked]").val();$("#absolute").is(":checked")==true
+		if(/ui-draggable/g.test(curClass)){
+			if(curObj){
+				if($("#getBackgroundPosition").is(":checked")==true){
+					var relativeX=e.pageX-curObj.offset().left;
+					var relativeY=e.pageY-curObj.offset().top;
+					if(relativeX>=0&&relativeY>=0){
+					var position="-"+relativeX+"px -"+relativeY+"px";
+						$("#getBackgroundPositionValue").attr("value",position);
+						console.log("position"+position);
+					}
+				}else{
+					curObj.removeClass("border")
+					curObj.addClass("border_blue")
+					$(".layout .parent").html(".contain")
+					curObj=null;
+				}
+			}else{
+				curObj=$(e.target)
+				curObj.addClass("border")
+				curObj.removeClass("border_blue")
+				$(".layout .parent").html(curObj.attr("class"))
+			}
+		}
+
+})
+$(document).bind("keydown",function(evt){
+evt = (evt) ? evt : window.event;
+
+switch(evt.keyCode){
+case 37:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"){
+			var left=curObj.offset().left;
+			curObj.css("left",(left-1)+"px");
+		}
+	}else{
+		var width=curObj.width();
+		curObj.css("width",(width-1)+"px");
+	}
+	return false;
+}
+break;
+case 39:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"){
+			var left=curObj.offset().left;
+			curObj.css("left",(left+1)+"px");
+		}
+	}else{
+		var width=curObj.width();
+		curObj.css("width",(width+1)+"px");
+	}
+	return false;
+}
+break;
+case 38:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"){
+			var top=curObj.offset().top;
+			curObj.css("top",(top-1)+"px");
+		}
+	}else{
+		var height=curObj.height();
+		curObj.css("height",(height-1)+"px");
+	}
+	return false;
+}
+break;
+case 40:
+if(curObj){
+	if(evt.ctrlKey){
+		if(curObj.css("position")=="absolute"){
+			var top=curObj.offset().top;
+			curObj.css("top",(top+1)+"px");
+		}
+	}else{
+		var height=curObj.height();
+		curObj.css("height",(height+1)+"px");
+	}
+	return false;
+}
+break;
+case 13:
+if(curObj){
+	if(evt.ctrlKey){
+		$(".contain .ui-draggable").removeClass(".ui-draggable");
+		$("#code").html($(".contain").html())
+		return false;
+	}
+}
+break;
+}
+
+});
+     
+</script>
+</html>

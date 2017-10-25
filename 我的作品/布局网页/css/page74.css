@@ -1,0 +1,5 @@
+*{padding:0;margin:0;}
+.center{margin:0 auto;text-align:center;}
+.border{border:1px solid red;}
+.hide{display:none;}
+.border_blue{border:#2e7ff9 1px solid;}

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><title>Writing to Subwindow</title>
+<meta http-equiv="content-Type" content="type=text/html;charset=utf-8">
+<script type="text/JavaScript">
+	var newWindow;
+	
+	function makeNewWindow(){
+		newWindow = window.open("","","status,height=700,width=500,scrollbars=yes");
+	}
+	
+	function checkNewWindow(){
+		// 测试调试窗口是否存在
+		if((!newWindow)||(newWindow.closed)){
+			makeNewWindow();
+			var newContent = "<html><head><title>WEB UART</title>";
+			newContent +="<style type='text/css'>body{margin:0;padding:0;font-size:12px;background:#ddd}</style></head>";
+			newContent += "<body><h1>WEB UART</h1></body></html>";
+
+			newWindow.document.write(newContent);
+		}
+	}
+	
+	function printk(info){
+		checkNewWindow();
+		newWindow.document.write("<br\>"+info);
+		newWindow.focus();
+	}
+	function printk_co(param0,info){
+		checkNewWindow();
+		newWindow.document.write("<p style='color:"+param0+";'>"+info+"</p>");
+	}
+	window.onbeforeunload=function (){
+		newWindow.document.close();
+	}
+</script>
+</head>
+
+<body>
+  <form>
+    <input type="button" value="Write to Subwindow" onClick="printk('sss');">
+web uart is like embered uart
+just use printk
+	<pre>
+	/*	知识点
+window.open(window.open ('page.html', 'newwindow', 'height=100, width=400, top=0, left=0, 
+toolbar=no, menubar=no, scrollbars=no,resizable=no,location=no, status=no') )
+	参数解释：
+	window.open 弹出新窗口的命令；
+	'page.html' 弹出窗口的文件名；
+	'newwindow' 弹出窗口的名字（不是文件名），非必须，可用空''代替；
+	height=100 窗口高度；
+	width=400 窗口宽度；
+	top=0 窗口距离屏幕上方的象素值；
+	left=0 窗口距离屏幕左侧的象素值；
+	toolbar=no 是否显示工具栏，yes为显示；
+	menubar，scrollbars 表示菜单栏和滚动栏。
+	resizable=no 是否允许改变窗口大小，yes为允许；
+	location=no 是否显示地址栏，yes为允许；
+	status=no 是否显示状态栏内的信息（通常是文件已经打开），yes为允许；
+
+window.onload
+window.closed
+window.focus()
+window.document.write()
+window.document.close()
+*/
+	</pre>
+  </form>
+</body>
+</html>

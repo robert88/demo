@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html><head><title>page</title>
+<link href="commonCss/common.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="commonJs/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="commonJs/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="commonJs/animate.js"></script>
+<style>
+	*{margin:0px;padding:0px;}
+	.hide{display:none;}
+	.bg{background-image:url(images/bg.jpg);background-repeat:no-repeat;}
+	.panel2{background-image:url(images/start_a.png);background-repeat:no-repeat;background-position:0px 0px;}
+	.panel3{background-image:url(images/start_hover.png);background-repeat:no-repeat;background-position:0px 0px;}
+	.panel4{background-image:url(images/start.png);background-repeat:no-repeat;background-position:0px 0px;}
+	.yan span{background-image:url(images/yan.png);background-repeat:no-repeat;background-position:0px 0px;width:38px;height:36px;position:absolute;}
+</style>
+</head><body>
+	<div class="page">
+		<div class="bg_1024 size_1024 bg" style="position:absolute; left:50%;margin-left:-511px;width: 1022px; height: 953px; overflow: hidden; background-position: 0px 0px;">
+		<div class="ui">
+			<div class="bg panel0" style="position:absolute;left:0px;top:3px;background-position:-0px -3px;width:1021px;height:110px"></div>
+		
+			<div class="bg panel1" style="position:absolute;left:0px;top:114px;background-position:-0px -114px;width:1022px;height:846px"></div>
+		
+			<div class="yan" style="position:absolute;left:642px;top:1px;width:242px;height:270px">
+				<span></span>
+			</div>
+			<div class="panel2" style="position:absolute;left:815px;top:808px;width:242px;height:239px"></div>
+			<div class="panel3 hide" style="position:absolute;left:810px;top:802px;width:242px;height:239px"></div>
+			<a href="fuc.html"><div class="panel4" style="position:absolute;left:828px;top:853px;width:242px;height:239px"></div></a>
+		</div>
+		<div class="btn_ctl play"></div>
+		</div>
+	</div>
+</body>
+<script>
+var g_ui;
+function init(){
+	for(var i=0;i<25;i++){
+		$(".yan").append("<span></span>");
+	}
+$(".yan span").css("top","255px");
+$(".yan span").css("left","90px");
+$(".yan span").hide();
+g_ui=$(".yan").html();
+}
+init();
+var g_num=0;
+setInterval(function(){
+g_num++;
+if(g_num>100){
+	g_num=0;
+}
+$(".panel4").hover(
+  function () {
+    $(".panel3").show();
+  },
+  function () {
+    $(".panel3").hide();
+  }
+);
+var vx=(Math.random()-0.5)*100+100;
+var vy=Math.random()*235;
+var idx=Math.round(Math.random()*20);
+	if(g_num%30){
+		$(".yan span").eq(idx).show();
+		$(".yan span").eq(idx).animate({width:"linear",left:vx+"px",top:vy+"px",opacity:"hide"},3000).queue(function(){
+			$(".yan").html(g_ui);
+		});
+	}
+},100)
+</script>
+</html>

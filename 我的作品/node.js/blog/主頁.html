@@ -1,0 +1,106 @@
+﻿<!DOCTYPE HTML>
+<meta charset="utf-8">
+<html lang="ch-cn"><head>
+<meta http-equiv="X-AU-Compatible" content="IE=edeg,chrome=1">
+<meta name="rendenerer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords" content="it,robert,blog,javascript,js,css,html,ps,前端,技术,博客">
+<meta name="description" content="robert专注于前端技术，包括javascript，css，html这些基础知识的开发，之后还研究jquery框架开发，nodejs网络编程，c语言图像解码技术开发">
+<title>=name= =title=</title>
+<link rel="stylesheet" href="../font/Annabelle/stylesheet.css" type="text/css" charset="utf-8" />
+<style>
+body, ul, li, p {margin:0; padding:0;font-family: '黑体';}
+ul li {list-style:none;}
+hr{border:0;background:#bfbfbf;height:1px;}
+img {border:0 none}
+#mobile{width:480px;}
+header hgroup{float:left;font-size:40px;color:#e56400;margin:20px;font-family:"annabelleregular"}
+header nav{width:50%;line-height:50px;height:50px;padding:20px;}
+</style>
+<script src="http://www.jiawin.com/wp-content/themes/javin/js/jquery.js"></script>
+<script src="commonJs/animate.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($){							
+		$('#ads_close').click(function(e){
+			$('#ads_box').fadeOut();
+			e.preventDefault();
+		});
+	});
+	var contain = mm({
+		type:"#mobile",
+		playReturnFlag:false,
+		frames:[
+		/*show 02*/	
+			{curFrame:2300,delayTime:"0",effect:"move_h,383px,300",repeatTimes:1,repeatIntervalTime:0,animateObj:".mark0"}
+			]
+	})
+</script>
+</head>
+<style>
+
+</style>
+<body>
+<div id="mobile">
+	<!--头-->
+	<header>
+		<hgroup style="float:left;">Robert</hgroup>
+		<nav style="margin-left:20px;display:inline-block;">
+			<a style="margin-left:10px;" href="">博客</a>
+			<a  style="margin-left:10px;"  href="">消息</a>
+			<a style="margin-left:10px;"  href="">个人中心</a>
+		</nav>
+	</header>
+	<hr style="height:4px;">
+	<!--身子-->
+	<article>
+		<aside></aside>
+		<section>
+			<h1 style="width:100%">
+			<span style="margin-left:20px;display:inline-block;color:#484848">个人博客</span>
+			<span  style="display:inline-block;width:366px;"><hr style="margin:0px 0px;"></span></h1>
+			<ul style="overflow:hidden;text-overflow:ellipsis;margin-left:40px;color:#0e8ef3">
+				<li><a>1、javascript简介<span style="width:200px;display:inline-block;"><hr style="margin:0 10px;border-top:1px dashed #0e8ef3;background:transparent;"></span><span>2014-05-22</span></a></li>
+			</ul>
+		</section>
+		<section>
+			<h1 style="width:100%">
+			<span style="margin-left:20px;display:inline-block;color:#484848">私人笔记</span>
+			<span  style="display:inline-block;width:366px;"><hr style="margin:0px 0px;"></span></h1>
+			<ul style="overflow:hidden;text-overflow:ellipsis;margin-left:40px;color:#0e8ef3">
+				<li><a>1、javascript简介<span style="width:200px;display:inline-block;"><hr style="margin:0 10px;border-top:1px dashed #0e8ef3;background:transparent;"></span><span>2014-05-22</span></a></li>
+			</ul>
+		</section>
+		<section>
+			<h1 style="width:100%">
+			<span style="margin-left:20px;display:inline-block;color:#484848">收藏文档</span>
+			<span  style="display:inline-block;width:366px;"><hr style="margin:0px 0px;"></span></h1>
+			<ul style="overflow:hidden;text-overflow:ellipsis;margin-left:40px;color:#0e8ef3">
+				<li><a>1、javascript简介<span style="width:200px;display:inline-block;"><hr style="margin:0 10px;border-top:1px dashed #0e8ef3;background:transparent;"></span><span>2014-05-22</span></a></li>
+			</ul>
+		</section>
+
+	</article>
+
+	<!--尾部-->
+	<footer style="margin-top:20px;">
+		<address>深圳市瑞思國際B座2006</address>
+
+			<time datetime="2014-05-22" pubdate="pubdate"></time>
+
+		<script>
+			(function(){
+				var time = document.getElementsByTagName("time")[0];
+				setInterval(function(a){
+					a.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());
+				},1000,time);
+			})();
+		</script>
+
+		</span>
+	</footer>
+</div>
+</body>
+<script>
+
+</script>
+</html>

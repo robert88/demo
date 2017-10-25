@@ -1,0 +1,45 @@
+body {padding:0;margin:0;}
+#head {background:url("headtile.jpg") repeat-x;width:900px;height:166px;}
+
+#charIn {
+	margin-left:1px;
+	overflow:left;
+	position:relative;
+	width:900px;
+	height:55px;
+	display: block;
+}
+#charInput {float:left;height:21px;}
+#char2UnicodeButton {float:left;height:27px;}
+#selectScale {float:left;height:27px;}
+
+#unicodeOut {display:none;}
+#unicodeOutputTitle{margin-left:1px;font-size:20px;height:20px;line-height:25px;font-weight:bold;}
+#unicodeOutput{width:900px;col:2;row:3}
+
+#unicodeOutTable {diplay:none;}
+.tableTr {color:red;}
+tr td {border:1px solid #000;}
+
+#unicodeIn {
+	margin-left:1px;
+	overflow:left;
+	position:relative;
+	width:900px;
+	height:55px;
+	display: block;
+}
+#unicodeInput {float:left;height:21px;}
+#unicode2CharButton {float:left;height:27px;}
+
+#charOut {display:none;}
+#charOutputTitle{margin-left:1px;font-size:20px;height:20px;line-height:25px;font-weight:bold;}
+#charOutput{width:900px;col:2;row:3}
+#baiduframe {
+	float: left;
+	position: relative;
+}
+#comeTitle {
+	float: left;
+	position: relative;
+}
