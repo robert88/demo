@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>layout</title>
+	<meta charset="utf-8">
+	<style>
+.parent:after,.parent:before{
+border:100%;
+border-width:30px;
+border:#fff;
+border-bottom-color:green;
+border:solid;
+width:0;
+height: 0; 
+position: absolute;
+content:" ";
+
+}
+.parent{
+	border:1px solid red;
+	position:relative;
+	width:20px;
+	height: 30px;
+}
+	</style>
+</head>
+<body style="background:#58A0AF;" >
+<div class="parent">
+	<div class="arrow"></div>
+	<textarea id="test"> </textarea>
+</div>
+<script type="text/javascript" charset="utf-8">
+function A(){
+	this.name = "a";
+}
+function B(){
+	A.call(this)
+}
+var b = new B();
+alert(b.name)
+</script>
+</select>
+<script>
+	
+</script>
+</body>
+</html>

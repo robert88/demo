@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+#contain{
+		position: relative;
+		width: 50px;
+		height:50px;
+}
+#contain .border{
+	position: absolute;
+}
+#contain .top,#contain .bottom{
+	height: 1px;
+	width:100%;
+	background:url(heng.png) repeat-x; 
+}
+#contain .left,#contain .right{
+	height: 100%;
+	width:1px;
+	background:url(su.png) repeat-y; 
+}
+#contain .top,{
+	top:0px; 
+}
+#contain .bottom{
+	bottom:0px;
+}
+#contain .left{
+	left:0px;
+}
+#contain .right{
+	right:0px;
+}
+
+</style>
+<body>
+<div style="background:black">
+<div style="
+    COLOR: RED;
+    position: absolute;
+    left: 20px;
+    top: 29px;
+">100%</div>
+	<canvas id="myCanvas" ></canvas>
+</div>
+<div style="background:black">
+	
+	<canvas id="myCanvas1" ></canvas>
+	<canvas id="myCanvas2" ></canvas>
+</div>
+</body>
+<script>
+/*消除clip带来的锯齿问题采用合并canvas的做法*/
+function drawLayOne( opts,neiR){
+	var c = opts.c,
+		ctx = opts.ctx,
+		width = opts.width,
+		height = opts.height,
+		fillColor = opts.color,
+		r = opts.r;
+
+		c.width = width;
+		c.height = height;
+		x = width/2;
+		y = height/2;
+		ctx.fillStyle=fillColor;
+		ctx.strokeStyle=fillColor;
+		ctx.beginPath();
+		ctx.moveTo(x,y)
+		ctx.arc(x, y, r,0, 2*Math.PI);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+
+		// clearCircle(ctx, x,y,neiR);
+		// //消除锯齿方法一，补画线条	ctx.fillStyle="#ffffff";
+		// ctx.strokeStyle = fillColor;
+		// ctx.beginPath();
+
+		// ctx.arc(x, y, neiR,0, 2*Math.PI);
+		// ctx.stroke();
+		// ctx.closePath();
+
+		return ctx.getImageData(0,0,c.width,c.height);
+}
+function drawLayTwo( opts, neiR, idx){
+	var c = opts.c,
+		ctx = opts.ctx,
+		width = opts.width,
+		height = opts.height,
+		fillColor = opts.color,
+		r = opts.r;
+
+		// c.width = width;
+		// c.height = height;
+		x = width/2;
+		y = height/2;
+		ctx.fillStyle=fillColor;
+		ctx.strokeStyle=fillColor;
+		ctx.beginPath();
+		ctx.moveTo(x,y)
+		ctx.arc(x, y, r,0, 2*Math.PI/100*idx);
+		ctx.fill();
+		// ctx.stroke();
+		ctx.closePath();
+		//产生锯齿了
+		// clearCircle(ctx, x,y,neiR);
+
+		// //消除锯齿方法一，补画线条	ctx.fillStyle="#ffffff";
+		// ctx.strokeStyle = fillColor;
+		// ctx.beginPath();
+		// ctx.arc(x, y, neiR,0, 2*Math.PI/100*idx);
+		// ctx.stroke();
+		// ctx.closePath();
+		return ctx.getImageData(0,0,c.width,c.height);
+}
+
+function drawPic(c, ctx, width,height,imgData1,imgData2){
+
+	// var red,green,blue,alpha;
+	// c.width = width;
+	// c.height = height;
+
+
+	// for (var i=0;i<imgData1.data.length;i+=4){
+
+	// 	red = imgData2.data[i];
+	// 	green = imgData2.data[i+1];
+	// 	blue = imgData2.data[i+2];
+	// 	alpha = imgData2.data[i+3];
+
+	// 	if(red||green||blue){
+	// 		// if(alpha<125){
+	// 		// 	alpha = 125
+	// 		// }
+	// 		imgData1.data[i] = red;
+	// 		imgData1.data[i+1] = green;
+	// 		imgData1.data[i+2] = blue;
+	// 		imgData1.data[i+3] = alpha;//有点断
+	// 	}
+	// }
+	// ctx.putImageData(imgData1,0,0);
+
+	// 图片导出为 png 格式
+	var type = "image/png"
+	var imgData = c.toDataURL(type)
+
+	 // window.location.href=imgData.replace("image/png","image/octet-stream");
+}
+function drawLayThree(opts){
+	var c = opts.c,
+		ctx = opts.ctx,
+		width = opts.width,
+		height = opts.height,
+		fillColor = opts.color,
+		r = opts.r;
+
+		// c.width = width;
+		// c.height = height;
+		x = width/2;
+		y = height/2;
+
+		//剪切
+		ctx.globalCompositeOperation="destination-out";
+
+		ctx.strokeStyle = fillColor;
+		ctx.beginPath();
+		ctx.arc(x, y, r,0, 2*Math.PI);
+		ctx.fill();
+		ctx.closePath();
+}
+
+var clearCircle = function(ctx, x, y, radius)
+{
+ ctx.beginPath();
+ ctx.lineWidth=3;
+ ctx.arc(x, y, radius, 0, 2 * Math.PI);
+ ctx.clip();
+ ctx.clearRect(x - radius-30, y - radius-30 ,x + radius  +30, y+ radius +30 );
+ ctx.closePath();
+}
+
+function download(idx){
+	var canvas=document.getElementById('myCanvas');
+var ctx=canvas.getContext('2d');
+var canvas1=document.getElementById('myCanvas1');
+var ctx1=canvas1.getContext('2d');
+var canvas2=document.getElementById('myCanvas2');
+var ctx2=canvas2.getContext('2d');
+ctx.imageSmoothingEnabled = false;
+ctx.webkitImageSmoothingEnabled = false;
+	
+	opts = {
+		c:canvas,
+		width:60,
+		height:60,
+		ctx:ctx,
+		color:"#ffa200",
+		r:26
+	}
+	opts1 = {
+		c:canvas,
+		width:60,
+		height:60,
+		ctx:ctx,
+		color:"#f4f6fc",
+		r:27
+	}
+	opts2 = {
+		c:canvas,
+		width:60,
+		height:60,
+		ctx:ctx,
+		color:"#f4f6fc",
+		r:24
+	}
+	var imgData1 = drawLayOne( opts,19);
+	console.log("imgData1")
+	var imgData2 = drawLayTwo( opts1,19, idx);
+	drawLayThree(opts2);
+	drawPic(canvas, ctx2, 60,60,imgData1,imgData2);
+}
+
+var a = -1;
+document.body.onclick = function  (argument) {
+	a++;
+	if(a>100){
+		return ;
+	}
+	download(a)
+}
+
+
+function autocreate(){
+	a++;
+	download(a)
+	if(a>100){
+		return ;
+	}
+	setTimeout(autocreate, 500)
+}
+autocreate()
+</script>
+</html>
