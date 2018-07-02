@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sample of the arrow</title>
+<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="echarts-all.js"></script>
+
+<style >
+*{
+margin:0;
+padding:0;}
+#test{
+width:200px; height:500px;
+border:1px solid red;
+letter-spacing:12px;
+font-size:20px;
+    font-family: Arial,Helvetica,"Microsoft yahei";
+	word-break:break-all;
+}
+#canvas{
+border:1px solid green;}
+textwrapspace{
+letter-spacing:0px;
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body >
+<div id="test">中文字博大精深高明之处不可以言语</div>
+<canvas id="canvas"></canvas>
+</body>
+<script>
+
+function drawtext(stacks,width,height){
+var canvas = $("#canvas")[0];
+var ctx = canvas.getContext("2d");
+canvas.width = width 
+canvas.height = height;
+ctx.beginPath();
+ctx.font="20px Arial";
+for(var i=0;i<stacks.length;i++){
+var stack = stacks[i];
+ctx[stack.name].apply(ctx,stack.arg);
+}
+
+}
+function tofloat(x){
+return parseFloat(x,10)||0
+}
+function init(){
+
+var test = $("#test")[0];
+var width = $("#test").width();
+var height= $("#test").height();
+var letterspace = tofloat($("#test").css("letter-spacing"));
+var str =test.innerHTML
+var len = str.length;
+var stacks=[];
+$("#test").html("<textwrap>中</textwrap>文字博大精深高明之处不可以言<textwrap>语</textwrap><textwrap style='display:block;'>语</textwrap><textwrapspace>&nbsp;</textwrapspace>")
+var $wrap = $("textwrap");
+var $space = $("textwrapspace");
+var x0=$wrap[0].offsetLeft;
+var y0=$wrap[0].offsetTop;
+var h0=$wrap[0].offsetHeight;
+var w0=$wrap[0].offsetWidth;
+var lineheight = $wrap.css("line-height");
+
+var x1=$wrap[1].offsetLeft;
+var y1=$wrap[1].offsetTop;
+var h1=$wrap[1].offsetHeight;
+var w1=$wrap[1].offsetWidth;
+
+
+var x3=$wrap[2].offsetLeft;
+var y3=$wrap[2].offsetTop;
+var h3=$wrap[2].offsetHeight;
+var w3=$wrap[2].offsetWidth;
+
+var x2=$space[0].offsetLeft;
+var y2=$space[0].offsetTop;
+var h2=$space[0].offsetHeight;
+var w2=$space[0].offsetWidth;
+console.log(x0,y0,h0,w0)
+console.log(x1,y1,h1,w1)
+console.log(x2,y2,h2,w2)
+$("#test").html(str)
+var spacenum =0;
+var spacestr="";
+//w2不为0且应该是letterspace的约数
+if(w2){
+	spacenum = Math.floor(letterspace/w2);//空隙会有误差
+	for(var i=0;i<spacenum;i++){
+		spacestr+=" ";
+	}
+	if(lineheight=="normal"){
+		lineheight = y2-y3
+	}
+	if((y1-y0)%lineheight!=0){
+		console.log("lineheight error");
+	}
+	var heightitem = Math.floor((y1-y0)/lineheight);
+	if(heightitem==0){
+		stacks.push({name:"fillText",arg:[str.replace(/(.)/g,"$1"+spacestr),x0,y0+h0]});
+	}else{
+		//一行有多少个字
+		var itemnum = Math.floor(width/w0);
+		var substr;
+		for(var j=0;j<heightitem;j++){
+			substr = str.slice(j*itemnum,j*itemnum+itemnum);
+			stacks.push({name:"fillText",arg:[substr.replace(/(.)/g,"$1"+spacestr),x0,y0+lineheight*j+h0]});
+		}
+		if(j*itemnum<len){
+			substr = str.slice(j*itemnum,len);
+			stacks.push({name:"fillText",arg:[substr.replace(/(.)/g,"$1"+spacestr),x0,y0+lineheight*j+h0]});
+		}
+	}
+}
+
+drawtext(stacks,width,height)
+}
+init();
+</script>
+</html>
